@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   return (
     <div className={styles.container}>
-        jajajajaj
+        This is going to be the new website for CSEA!
     </div>
   )
 }
