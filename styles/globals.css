@@ -26,8 +26,10 @@ a {
   box-sizing: border-box;
 }
 
+/* Glass card styling */
+
 .glasscard {
-  @apply px-4 py-4;
+  @apply px-5 py-5;
   background: linear-gradient(
     126.6deg,
     rgba(255, 255, 255, 0.12) 28.69%,
@@ -37,4 +39,14 @@ a {
   -webkit-backdrop-filter: blur(140px);
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+/* title with line styling */
+
+.titleWithLine{
+  @apply w-full;
+}
+
+.underLine{
+  @apply my-3 bg-white h-0.5;
 }

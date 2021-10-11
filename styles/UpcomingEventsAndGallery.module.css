@@ -1,0 +1,41 @@
+.holder {
+  @apply grid gap-4 my-4;
+  grid-template-columns: 500px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .holder {
+    @apply grid grid-cols-1 gap-4;
+  }
+}
+
+.upcomingEventsHolder{
+    height:500px;
+    @apply overflow-auto;
+}
+
+/* Upcoming Event box styling */
+
+.upcomingEvent{
+    @apply py-0 mt-8 flex flex-col-reverse sm:flex-row;
+}
+
+.contentHolder{
+    @apply flex items-start justify-start flex-col py-4 sm:flex-grow sm:py-0;
+}
+
+.title{
+    @apply italic;
+}
+
+.date{
+    @apply flex items-center justify-start gap-2 my-3 font-bold text-sm;
+}
+
+.checkOutEventButton{
+
+}
+
+.imageHolder{
+    @apply bg-gray-300 h-36 w-full rounded-md sm:h-28 sm:w-28;
+}
