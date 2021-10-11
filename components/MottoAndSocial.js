@@ -20,28 +20,36 @@ const MottoAndSocial = () => {
         <Glasscard>
           <div className={styles.iconbox}>
             <div className={styles.icon}>
+              <a target="_blank" rel="noreferrer noopener" href = "https://www.instagram.com/cseapsgtech/">
               <Image
                 src={instaLogo}
                 alt="Instagram logo"
               />
+              </a>
             </div>
             <div className={styles.icon}>
+              <a target="_blank" rel="noreferrer noopener" href = "https://www.twitter.com/cseapsgtech/">
               <Image
                 src={twitterLogo}
                 alt="Twitter logo"
               />
+              </a>
             </div>
             <div className={styles.icon}>
+            <a target="_blank" rel="noreferrer noopener" href = "https://www.linkedin.com/in/cseapsgtech/">
               <Image
                 src={linkedinLogo}
                 alt="Linkedin logo"
               />
+              </a>
             </div>
             <div className={styles.icon}>
+              <a target="_blank" rel="noreferrer noopener" href = "#">
               <Image
                 src={youtubeLogo}
-                alt="Youtube logo"
+                alt="Blog logo"
               />
+              </a>
             </div>
           </div>
         </Glasscard>
