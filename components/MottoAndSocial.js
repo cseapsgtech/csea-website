@@ -13,7 +13,7 @@ const MottoAndSocial = () => {
     <div className={styles.holder}>
       {/*Motto*/}
       <Glasscard>
-        <div>Motto goes here...</div>
+        <div>Motto of CSEA goes here...</div>
       </Glasscard>
       {/*Social*/}
       <div className={styles.iconholder}>
