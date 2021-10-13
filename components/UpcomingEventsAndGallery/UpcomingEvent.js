@@ -91,7 +91,7 @@ const UpcomingEvent = (props) => {
 
           {props.date}
         </div>
-        {/* <div className={styles.checkOutEventButton}>Check out EVENT!</div> */}
+        <button className={styles.checkOutEventButton}>Check out EVENT!</button>
       </div>
       <div className={styles.imageHolder}></div>
     </div>

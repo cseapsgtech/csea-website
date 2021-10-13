@@ -11,7 +11,7 @@
 
 .upcomingEventsHolder{
     height:500px;
-    @apply overflow-auto;
+    @apply overflow-auto pr-3;
 }
 
 /* Upcoming Event box styling */
@@ -33,9 +33,14 @@
 }
 
 .checkOutEventButton{
+  @apply py-2 px-4 rounded-lg text-sm;  
+  background: linear-gradient(to left, #1998a9 , #1EAAB2 );
+}
 
+.checkOutEventButton:hover{
+    background: linear-gradient(to right, #1998a9 , #1EAAB2 );
 }
 
 .imageHolder{
-    @apply bg-gray-300 h-36 w-full rounded-md sm:h-28 sm:w-28;
+    @apply bg-gray-300 h-36 w-full rounded-md sm:h-28 sm:w-28 shadow-xl;
 }

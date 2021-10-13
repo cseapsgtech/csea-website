@@ -6,7 +6,7 @@
 
 html,
 body {
-  @apply px-4;
+  @apply px-2 md:px-4;
   margin: 0;
   font-family: "Public Sans", sans-serif;
   color: white;
@@ -24,6 +24,25 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, .5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /* Glass card styling */
