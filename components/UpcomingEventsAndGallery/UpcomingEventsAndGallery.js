@@ -6,12 +6,12 @@ import styles from "../../styles/UpcomingEventsAndGallery.module.css";
 
 const UpcomingEventsAndGallery = () => {
   return (
-    <div className={styles.holder}>
+    <div className="flex flex-col md:flex-row w-full">
       {/*Upcoming events*/}
-      <Glasscard>
+      <Glasscard className="w-full md:w-2/6 my-4 mr-4">
         <TitleWithLine title="Upcoming events" />
         {/*After fetching the result of API call to obtain upcoming events, use map function to generate the component for each upcoming event*/}
-        <div className={styles.upcomingEventsHolder}>
+        <div className="overflow-auto pr-3" style={{height: "500px"}}>
           <UpcomingEvent title="Upcoming Event 1" date="23/10/2021" />
           <UpcomingEvent title="Upcoming Event 2" date="23/10/2021" />
           <UpcomingEvent title="Upcoming Event 3" date="23/10/2021" />
@@ -19,9 +19,12 @@ const UpcomingEventsAndGallery = () => {
         </div>
       </Glasscard>
       {/*Gallery*/}
-      <Glasscard>
+      <Glasscard className="w-full md:w-4/6 my-4">
         <TitleWithLine title="Gallery" />
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-x-5 overflow-auto pr-3" style={{height: "500px"}}>
+        <div
+          className="grid grid-cols-1 md:grid-cols-4 gap-x-5 overflow-auto pr-3"
+          style={{ height: "500px" }}
+        >
           {/*After fetching the result of API call to obtain upcoming events, use map function to generate the component for each upcoming event*/}
           <GalleryContainer
             img="https://images.unsplash.com/photo-1633943934319-8977edad7de7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80"

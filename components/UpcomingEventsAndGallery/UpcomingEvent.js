@@ -4,10 +4,10 @@ import styles from "../../styles/UpcomingEventsAndGallery.module.css";
 
 const UpcomingEvent = (props) => {
   return (
-    <div className={styles.upcomingEvent}>
-      <div className={styles.contentHolder}>
-        <div className={styles.title}>{props.title}</div>
-        <div className={styles.date}>
+    <div className="py-0 mt-8 flex flex-col-reverse md:flex-row">
+      <div className="flex items-start justify-start flex-col py-4 md:flex-grow md:py-0">
+        <div className="italic">{props.title}</div>
+        <div className="flex items-center justify-start gap-2 my-3 font-bold text-sm">
           <svg
             width="24"
             height="24"
@@ -91,9 +91,11 @@ const UpcomingEvent = (props) => {
 
           {props.date}
         </div>
-        <button className={styles.checkOutEventButton}>Check out EVENT!</button>
+        <button className="py-2 px-4 rounded-lg text-sm bg-gradient-to-l from-green-400 to-blue-500 hover:from-blue-500 hover:to-green-400">
+          Check out EVENT!
+        </button>
       </div>
-      <div className={styles.imageHolder}></div>
+      <div className="bg-gray-300 h-36 w-full rounded-md md:h-28 md:w-28 shadow-xl"></div>
     </div>
   );
 };

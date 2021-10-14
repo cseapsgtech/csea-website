@@ -48,7 +48,6 @@ a {
 /* Glass card styling */
 
 .glasscard {
-  @apply px-5 py-5;
   background: linear-gradient(
     126.6deg,
     rgba(255, 255, 255, 0.12) 28.69%,
@@ -60,12 +59,6 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-/* title with line styling */
-
-.titleWithLine{
-  @apply w-full;
-}
-
-.underLine{
-  @apply my-3 bg-white h-0.5;
+.font-playfair{
+  font-family: 'Playfair Display', serif;
 }
