@@ -1,5 +1,7 @@
 // This is the upcoming event component
 
+import GradButton from "../GradButton";
+
 const UpcomingEvent = (props) => {
   return (
     <div className="py-0 mt-8 flex flex-col-reverse md:flex-row">
@@ -89,9 +91,7 @@ const UpcomingEvent = (props) => {
 
           {props.date}
         </div>
-        <button className="py-2 px-4 rounded-lg text-sm bg-gradient-to-l from-green-400 to-blue-500 hover:from-blue-500 hover:to-green-400">
-          Check out EVENT!
-        </button>
+        <GradButton>Check out the <span className="font-semibold">EVENT</span> ! </GradButton>
       </div>
       <div className="bg-gray-300 h-36 w-full rounded-md md:h-28 md:w-28 shadow-xl"></div>
     </div>

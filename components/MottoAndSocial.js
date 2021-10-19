@@ -17,7 +17,7 @@ const MottoAndSocial = () => {
             Motto of <span className="italic font-semibold">CSEA</span> goes
             here
           </div>
-          <button className="px-6 py-3 border-white border-2 rounded-lg my-5 hover:bg-gray-700">
+          <button className="px-6 py-3 border-white border-2 rounded-lg my-5 md:hover:bg-gray-700">
             Check out the <span className="font-semibold">TEAM</span>!
           </button>
         </div>
