@@ -1,5 +1,4 @@
 import Image from "next/image";
-import styles from "../styles/TopBar.module.css";
 
 // Image imports
 import logo from "../public/logo.png";

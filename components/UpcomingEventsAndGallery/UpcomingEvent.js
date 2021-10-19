@@ -1,7 +1,5 @@
 // This is the upcoming event component
 
-import styles from "../../styles/UpcomingEventsAndGallery.module.css";
-
 const UpcomingEvent = (props) => {
   return (
     <div className="py-0 mt-8 flex flex-col-reverse md:flex-row">
@@ -101,3 +99,9 @@ const UpcomingEvent = (props) => {
 };
 
 export default UpcomingEvent;
+
+// events
+// problem 
+// blog
+// news
+// teams

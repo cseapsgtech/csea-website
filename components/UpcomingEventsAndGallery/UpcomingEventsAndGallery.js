@@ -2,7 +2,6 @@ import Glasscard from "../Glasscard";
 import UpcomingEvent from "./UpcomingEvent";
 import TitleWithLine from "../TitleWithLine";
 import Image from "next/image";
-import styles from "../../styles/UpcomingEventsAndGallery.module.css";
 
 const UpcomingEventsAndGallery = () => {
   return (
