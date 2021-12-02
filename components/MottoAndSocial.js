@@ -23,10 +23,9 @@ const MottoAndSocial = () => {
         </div>
       </Glasscard>
       {/*Social*/}
-      <div className="">
         <Glasscard>
-          <div className="flex flex-row md:flex-col w-full items-center space-x-8 md:space-x-0 justify-center">
-            <div className="flex my-2 h-12 w-12 items-center rounded-full cursor-pointer">
+          <div className="flex flex-row w-full justify-evenly items-center space-x-8 md:flex-col md:space-x-0 md:space-y-6">
+            <div className="flex my-2 h-12 w-12 items-center rounded-full">
               <a
                 target="_blank"
                 rel="noreferrer noopener"
@@ -35,7 +34,7 @@ const MottoAndSocial = () => {
                 <Image src={instaLogo} alt="Instagram logo" />
               </a>
             </div>
-            <div className="flex my-2 h-12 w-12 items-center rounded-full cursor-pointer">
+            <div className="flex my-2 h-12 w-12 items-center rounded-full">
               <a
                 target="_blank"
                 rel="noreferrer noopener"
@@ -44,7 +43,7 @@ const MottoAndSocial = () => {
                 <Image src={twitterLogo} alt="Twitter logo" />
               </a>
             </div>
-            <div className="flex my-2 h-12 w-12 items-center rounded-full cursor-pointer">
+            <div className="flex my-2 h-12 w-12 items-center rounded-full">
               <a
                 target="_blank"
                 rel="noreferrer noopener"
@@ -53,14 +52,13 @@ const MottoAndSocial = () => {
                 <Image src={linkedinLogo} alt="Linkedin logo" />
               </a>
             </div>
-            <div className="flex my-2 h-12 w-12 items-center rounded-full cursor-pointer">
+            <div className="flex my-2 h-12 w-12 items-center rounded-full">
               <a target="_blank" rel="noreferrer noopener" href="#">
                 <Image src={youtubeLogo} alt="Blog logo" />
               </a>
             </div>
           </div>
         </Glasscard>
-      </div>
     </div>
   );
 };
