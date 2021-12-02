@@ -1,6 +1,5 @@
 import Glasscard from "./Glasscard";
 import Image from "next/image";
-import styles from "../styles/MottoAndSocial.module.css";
 
 // Image imports
 import instaLogo from "../public/Social media icons/instagram.png";
@@ -10,45 +9,53 @@ import youtubeLogo from "../public/Social media icons/youtube.png";
 
 const MottoAndSocial = () => {
   return (
-    <div className={styles.holder}>
+    <div className="flex w-full flex-col md:flex-row">
       {/*Motto*/}
-      <Glasscard>
-        <div>Motto goes here...</div>
+      <Glasscard className="flex-1 w-full my-4 md:my-0 md:mr-4">
+        <div className="flex flex-col items-center justify-center h-full p-4">
+          <div className="text-3xl text-center">
+            Motto of <span className="italic font-semibold">CSEA</span> goes
+            here
+          </div>
+          <button className="px-6 py-3 border-white border-2 rounded-lg my-5 md:hover:bg-gray-700">
+            Check out the <span className="font-semibold">TEAM</span>!
+          </button>
+        </div>
       </Glasscard>
       {/*Social*/}
-      <div className={styles.iconholder}>
+      <div className="">
         <Glasscard>
-          <div className={styles.iconbox}>
-            <div className={styles.icon}>
-              <a target="_blank" rel="noreferrer noopener" href = "https://www.instagram.com/cseapsgtech/">
-              <Image
-                src={instaLogo}
-                alt="Instagram logo"
-              />
+          <div className="flex flex-row md:flex-col w-full items-center space-x-8 md:space-x-0 justify-center">
+            <div className="flex my-2 h-12 w-12 items-center rounded-full cursor-pointer">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://www.instagram.com/cseapsgtech/"
+              >
+                <Image src={instaLogo} alt="Instagram logo" />
               </a>
             </div>
-            <div className={styles.icon}>
-              <a target="_blank" rel="noreferrer noopener" href = "https://www.twitter.com/cseapsgtech/">
-              <Image
-                src={twitterLogo}
-                alt="Twitter logo"
-              />
+            <div className="flex my-2 h-12 w-12 items-center rounded-full cursor-pointer">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://www.twitter.com/cseapsgtech/"
+              >
+                <Image src={twitterLogo} alt="Twitter logo" />
               </a>
             </div>
-            <div className={styles.icon}>
-            <a target="_blank" rel="noreferrer noopener" href = "https://www.linkedin.com/in/cseapsgtech/">
-              <Image
-                src={linkedinLogo}
-                alt="Linkedin logo"
-              />
+            <div className="flex my-2 h-12 w-12 items-center rounded-full cursor-pointer">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://www.linkedin.com/in/cseapsgtech/"
+              >
+                <Image src={linkedinLogo} alt="Linkedin logo" />
               </a>
             </div>
-            <div className={styles.icon}>
-              <a target="_blank" rel="noreferrer noopener" href = "#">
-              <Image
-                src={youtubeLogo}
-                alt="Blog logo"
-              />
+            <div className="flex my-2 h-12 w-12 items-center rounded-full cursor-pointer">
+              <a target="_blank" rel="noreferrer noopener" href="#">
+                <Image src={youtubeLogo} alt="Blog logo" />
               </a>
             </div>
           </div>
@@ -59,3 +66,4 @@ const MottoAndSocial = () => {
 };
 
 export default MottoAndSocial;
+

@@ -1,8 +1,0 @@
-.titleAndLogoHolder{
-  @apply py-8 flex justify-center md:justify-between items-center; /*used to apply Tailwind styles to our own modules*/
-}
-
-.title{
-  @apply hidden md:block;
-  font-family: 'Playfair Display', serif;
-}
