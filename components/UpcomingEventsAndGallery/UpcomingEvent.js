@@ -5,8 +5,8 @@ import GradButton from "../GradButton";
 const UpcomingEvent = (props) => {
   return (
     <div className="py-0 flex flex-col-reverse md:flex-row">
-      <div className="flex items-start justify-start flex-col py-4 md:flex-grow md:py-0">
-        <div className="italic">{props.title}</div>
+      <div className="flex items-start justify-start flex-col py-4 md:flex-grow md:py-0 md:pr-8">
+        <span className="italic truncate w-56" title={props.title}>{props.title}</span>
         <div className="flex items-center justify-start gap-2 mt-2 mb-3 font-bold text-sm">
           <svg
             width="24"

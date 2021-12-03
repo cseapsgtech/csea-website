@@ -6,13 +6,13 @@ import GalleryContainer from "./GalleryContainer";
 
 const UpcomingEventsAndGallery = () => {
   return (
-    <div className="flex flex-col md:flex-row w-full">
+    <div className="flex flex-col md:flex-row w-full my-4">
       {/*Upcoming events*/}
-      <Glasscard className="w-full md:w-2/6 my-4 mr-4">
+      <Glasscard className="w-full md:w-max mr-4">
         <TitleWithLine title="Upcoming events" />
         {/*After fetching the result of API call to obtain upcoming events, use map function to generate the component for each upcoming event*/}
         <div className="overflow-auto flex flex-col justify-between gap-y-8 pr-3" style={{height: "500px"}}>
-          <UpcomingEvent title="Upcoming Event 1" date="23/10/2021" />
+          <UpcomingEvent title="Upcoming Event 1 with a long event name" date="23/10/2021" />
           <UpcomingEvent title="Upcoming Event 2" date="23/10/2021" />
           <UpcomingEvent title="Upcoming Event 3" date="23/10/2021" />
           <UpcomingEvent title="Upcoming Event 4" date="23/10/2021" />
@@ -20,11 +20,11 @@ const UpcomingEventsAndGallery = () => {
         </div>
       </Glasscard>
       {/*Gallery*/}
-      <Glasscard className="w-full md:w-4/6 md:my-4">
+      <Glasscard className="w-full my-4 md:my-0">
         <TitleWithLine title="Gallery" />
         <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-x-3 overflow-auto pr-3"
-          style={{ height: "500px" }}
+          className="grid gap-3 overflow-auto pr-3"
+          style={{ height: "500px", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}
         >
           {/*After fetching the result of API call to obtain upcoming events, use map function to generate the component for each upcoming event*/}
           <GalleryContainer
