@@ -5,7 +5,7 @@ const UpcomingEvent = (props) => {
   return (
     <div className="py-0 flex flex-col-reverse md:flex-row">
       <div className="flex items-start justify-start flex-col py-4 md:flex-grow md:py-0 md:pr-8">
-        <span className="italic line-clamp-1 md:w-56" title={props.title}>{props.title}</span>
+        <span className="italic line-clamp-1 md:w-56 textShadow" title={props.title}>{props.title}</span>
         <CalendarIconAndDate date={props.date} styles="mt-3 mb-4"/>
         <GradientButton>Check out <span className="font-semibold">EVENT!</span></GradientButton>
       </div>

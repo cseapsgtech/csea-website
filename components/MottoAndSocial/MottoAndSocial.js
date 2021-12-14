@@ -7,11 +7,11 @@ const MottoAndSocial = () => {
       {/*Motto*/}
       <Glasscard className="flex-1 w-full my-4 md:my-0 md:mr-4">
         <div className="flex flex-col items-center justify-center h-full p-4">
-          <div className="text-2xl md:text-3xl text-center">
+          <div className="text-2xl md:text-3xl text-center textShadow">
             Motto of <span className="italic font-semibold">CSEA</span> goes
             here
           </div>
-          <button className="px-6 py-2 border-white border-2 rounded-lg my-5 md:hover:bg-gray-700">
+          <button className="px-6 py-2 border-white border-2 rounded-lg my-5 md:hover:bg-gray-700 textShadow">
             Check out the <span className="font-semibold">TEAM</span>!
           </button>
         </div>

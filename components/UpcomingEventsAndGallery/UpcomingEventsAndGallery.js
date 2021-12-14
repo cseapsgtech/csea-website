@@ -2,7 +2,6 @@ import Glasscard from "../Glasscard";
 import UpcomingEvent from "./UpcomingEvent";
 import TitleWithLine from "../TitleWithLine";
 import GalleryContainer from "./GalleryContainer";
-// import Image from "next/image";
 
 const UpcomingEventsAndGallery = () => {
   return (

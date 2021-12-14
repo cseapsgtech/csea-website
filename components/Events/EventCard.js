@@ -14,7 +14,7 @@ const EventCard = (props) => {
         <div className="bg-gray-300 rounded-md h-60 w-full md:h-28 md:w-28 shadow-xl md:mt-2"></div>
         {/* Info holder */}
         <div
-          className="pt-4 md:pt-0 md:w-72 md:pl-4 line-clamp-6 text-justify leading-loose"
+          className="pt-4 md:pt-0 md:w-72 md:pl-4 line-clamp-6 text-justify leading-loose textShadow"
           style={{ height: "fit-content" }}
         >
           {props.content}

@@ -1,6 +1,6 @@
 const CalendarIconAndDate = (props) => {
     return(
-        <div className={`${props.styles} flex items-center gap-1 font-bold text-sm`}>
+        <div className={`${props.styles} flex items-center gap-1.5 font-bold text-sm`}>
           <svg
             width="24"
             height="24"
@@ -81,7 +81,7 @@ const CalendarIconAndDate = (props) => {
               strokeLinejoin="round"
             />
           </svg>
-          {props.date}
+          <span className="textShadow">{props.date}</span>
         </div>
     )
 }
