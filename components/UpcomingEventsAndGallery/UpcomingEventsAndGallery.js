@@ -6,7 +6,7 @@ import GalleryContainer from "./GalleryContainer";
 
 const UpcomingEventsAndGallery = () => {
   return (
-    <div className="flex flex-col md:flex-row w-full my-4">
+    <div className="flex flex-col md:flex-row w-full md:my-4">
       {/*Upcoming events*/}
       <Glasscard className="w-full md:w-max mr-4">
         <TitleWithLine title="Upcoming events" />

@@ -1,15 +1,9 @@
-import Glasscard from "./Glasscard";
+import Glasscard from "../Glasscard";
 import Image from "next/image";
-
-// Image imports
-import instaLogo from "../public/Social media icons/instagram.png";
-import twitterLogo from "../public/Social media icons/twitter.png";
-import linkedinLogo from "../public/Social media icons/linkedin.png";
-import youtubeLogo from "../public/Social media icons/youtube.png";
 
 const MottoAndSocial = () => {
   return (
-    <div className="flex w-full flex-col md:flex-row">
+    <div className="flex w-full flex-col my-4 md:flex-row">
       {/*Motto*/}
       <Glasscard className="flex-1 w-full my-4 md:my-0 md:mr-4">
         <div className="flex flex-col items-center justify-center h-full p-4">
@@ -32,7 +26,7 @@ const MottoAndSocial = () => {
             className="flex my-2 h-12 w-12 items-center rounded-full"
           >
             <Image
-              src={instaLogo}
+              src="/static/Social media icons/instagram.png"
               height="48px"
               width="48px"
               alt="Instagram logo"
@@ -46,7 +40,7 @@ const MottoAndSocial = () => {
             className="flex my-2 h-12 w-12 items-center rounded-full"
           >
             <Image
-              src={twitterLogo}
+              src="/static/Social media icons/twitter.png"
               height="48px"
               width="48px"
               alt="Twitter logo"
@@ -60,7 +54,7 @@ const MottoAndSocial = () => {
             className="flex my-2 h-12 w-12 items-center rounded-full"
           >
             <Image
-              src={linkedinLogo}
+              src="/static/Social media icons/linkedin.png"
               height="48px"
               width="48px"
               alt="Linkedin logo"
@@ -74,7 +68,7 @@ const MottoAndSocial = () => {
             className="flex my-2 h-12 w-12 items-center rounded-full"
           >
             <Image
-              src={youtubeLogo}
+              src="/static/Social media icons/youtube.png"
               height="48px"
               width="48px"
               alt="Blog logo"
