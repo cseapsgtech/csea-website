@@ -24,29 +24,25 @@ a {
 
 * {
   box-sizing: border-box;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
+  height:8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(136, 136, 136, 0.5);
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Glass card styling */
-
 .glasscard {
   background: linear-gradient(
     126.6deg,
@@ -65,4 +61,11 @@ a {
 
 .font-public {
   font-family: "Public Sans", sans-serif;
+}
+
+/* Gradient button styling */
+/* gradient bg 1 */
+.grad-button {
+  background: linear-gradient(93.41deg, #27c2c7 0%, #179296 100%);
+  box-shadow: 0px 8px 24px -6px rgba(27, 46, 94, 0.25);
 }
