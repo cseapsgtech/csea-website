@@ -5,6 +5,7 @@ import UpcomingEventsAndGallery from "../components/UpcomingEventsAndGallery/Upc
 import Events from "../components/Events/Events"
 import SIC from "../components/SIC/SIC"
 import News from "../components/News/News"
+import HODDesk from "../components/HODDesk/HODDesk"
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Events />
       <SIC />
       <News />
+      <HODDesk />
     </div>
   )
 }

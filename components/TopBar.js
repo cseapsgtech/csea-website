@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 import Image from "next/image";
 
 // Image imports
@@ -8,11 +8,11 @@ const Home = () => {
   return (
     <div className="py-8 flex justify-center md:justify-between items-center font-playfair">
       <div className="hidden md:block">
-        <Link href="/">
-          Computer Science and Engineering Association
-        </Link>
+        <Link href="/">Computer Science and Engineering Association</Link>
       </div>
-      <Image height={20} width={120} src={logo} alt="Logo of CSEA" />
+      <Link href="/">
+        <a><Image height={20} width={120} src={logo} alt="Logo of CSEA" className="cursor-pointer"/></a>
+      </Link>
     </div>
   );
 };
