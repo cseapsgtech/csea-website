@@ -3,15 +3,15 @@ import Image from "next/image";
 
 const MottoAndSocial = () => {
   return (
-    <div className="flex w-full flex-col my-4 md:flex-row">
+    <div className="flex w-full flex-col gap-6 mb-6 md:flex-row">
       {/*Motto*/}
-      <Glasscard className="flex-1 w-full my-4 md:my-0 md:mr-4">
+      <Glasscard styles="flex-1 w-full md:my-0">
         <div className="flex flex-col items-center justify-center h-full p-4">
-          <div className="text-2xl md:text-3xl text-center textShadow">
+          <div className="text-xl md:text-3xl text-center textShadow">
             Motto of <span className="italic font-semibold">CSEA</span> goes
             here
           </div>
-          <button className="px-6 py-2 border-white border-2 rounded-lg my-5 md:hover:bg-gray-700 textShadow">
+          <button className="text-sm px-6 py-2 border-white border-2 rounded-lg mt-5 md:hover:bg-gray-700 textShadow">
             Check out the <span className="font-semibold">TEAM</span>!
           </button>
         </div>

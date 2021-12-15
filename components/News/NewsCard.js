@@ -1,8 +1,8 @@
 import TitleWithLine from "../TitleWithLine";
-import CalendarIconAndDate from "../CalendarIconAndDate";
+import EstimatedReadingTime from "../EstimatedReadingTime";
 import GradientButton from "../GradientButton";
 
-const EventCard = (props) => {
+const NewsCard = (props) => {
   return (
     <div
       className="cardBorder rounded-lg px-6 py-8 md:p-6 flex flex-col md:min-w-max"
@@ -20,13 +20,14 @@ const EventCard = (props) => {
         </div>
       </div>
       <div className="mt-6 flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between">
-        <CalendarIconAndDate date={props.date} />
+        <EstimatedReadingTime readingTime={props.readingTime} />
         <GradientButton>
-          Check out <span className="font-semibold">EVENT!</span>
+          Read the <span className="font-semibold">full story</span>
         </GradientButton>
       </div>
     </div>
   );
 };
 
-export default EventCard;
+export default NewsCard;
+

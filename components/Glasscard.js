@@ -1,6 +1,6 @@
 const Glasscard = (props) => {
     return(
-        <div className={`${props.className} px-5 py-5 glasscard`}>
+        <div className={`${props.styles} px-5 py-5 glasscard`}>
             {props.children}
         </div>
     )

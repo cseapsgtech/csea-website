@@ -5,9 +5,9 @@ import GalleryContainer from "./GalleryContainer";
 
 const UpcomingEventsAndGallery = () => {
   return (
-    <div className="flex flex-col md:flex-row w-full md:my-4">
+    <div className="flex flex-col gap-6 mb-6 md:flex-row w-full">
       {/*Upcoming events*/}
-      <Glasscard className="w-full md:w-max mr-4">
+      <Glasscard styles="w-full md:w-max">
         <TitleWithLine title="Upcoming events" />
         {/*After fetching the result of API call to obtain upcoming events, use map function to generate the component for each upcoming event*/}
         <div className="overflow-auto flex flex-col justify-between gap-y-8 pr-3" style={{height: "500px"}}>
@@ -19,7 +19,7 @@ const UpcomingEventsAndGallery = () => {
         </div>
       </Glasscard>
       {/*Gallery*/}
-      <Glasscard className="w-full my-4 md:my-0">
+      <Glasscard styles="w-full">
         <TitleWithLine title="Gallery" />
         <div
           className="grid gap-3 overflow-auto pr-3"

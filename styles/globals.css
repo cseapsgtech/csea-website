@@ -4,17 +4,18 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Public+Sans:ital,wght@0,200;0,400;1,200;1,400&display=swap");
 
-html,
 body {
-  @apply px-2 md:px-4;
+  @apply px-8;
   margin: 0;
   font-family: "Public Sans", sans-serif;
   color: white;
-  background: url("../public/bg.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  width:100%;
+  background: url("../public/bg.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  width: 100%;
+  overflow: overlay;
 }
 
 a {
@@ -26,23 +27,27 @@ a {
   box-sizing: border-box;
 }
 
-.textShadow{
+.textShadow {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+
+/* ScrollBar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height:8px;
+  width: 5px;
+  height: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
 }
 
 /* Glass card styling */
@@ -71,4 +76,9 @@ a {
 .grad-button {
   background: linear-gradient(93.41deg, #27c2c7 0%, #179296 100%);
   box-shadow: 0px 8px 24px -6px rgba(27, 46, 94, 0.25);
+}
+
+/* Events and News card styling */
+.cardBorder {
+  border: 1px solid rgba(255, 255, 255, 0.125);
 }
