@@ -1,6 +1,6 @@
 import TopBar from "../components/TopBar"
 
-export default function About() {
+export default function Gallery() {
     return (
       <div>
         <TopBar />
