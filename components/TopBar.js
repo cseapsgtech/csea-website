@@ -11,7 +11,7 @@ const Home = () => {
         <Link href="/">Computer Science and Engineering Association</Link>
       </div>
       <Link href="/">
-        <a><Image height={20} width={120} src={logo} alt="Logo of CSEA" className="cursor-pointer"/></a>
+        <Image height={20} width={120} src={logo} alt="Logo of CSEA" className="cursor-pointer"/>
       </Link>
     </div>
   );

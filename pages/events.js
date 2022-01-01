@@ -1,6 +1,6 @@
 import TopBar from "../components/TopBar"
 
-export default function About() {
+const Events = () => {
     return (
       <div>
         <TopBar />
@@ -8,3 +8,5 @@ export default function About() {
       </div>
     )
 }
+
+export default Events;
