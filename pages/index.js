@@ -6,6 +6,7 @@ import Events from "../components/Events/Events"
 import SIC from "../components/SIC/SIC"
 import News from "../components/News/News"
 import HODDesk from "../components/HODDesk/HODDesk"
+import Team from "../components/Team/Team"
 
 export default function Home() {
   return (
@@ -19,8 +20,9 @@ export default function Home() {
       <UpcomingEventsAndGallery />
       <Events />
       <SIC />
-      <News />
       <HODDesk />
+      <News />
+      <Team />
     </div>
   )
 }
