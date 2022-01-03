@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const OtherLinksHolder = () => {
   return (
-    <div className="w-64">
+    <div className="w-full md:w-64">
       <div className="flex flex-col">
         <Link href="/">
           <a className="text-shadow my-2">About</a>
@@ -19,7 +19,10 @@ const OtherLinksHolder = () => {
         </Link>
       </div>
       <div className="w-full my-3 bg-white h-0.5 shadow-xl"></div>
-      <Image src="/images/logo.png" height={20} width={120} alt="CSEA logo" />
+      <div className="flex items-center gap-4">
+      <div className="bg-white p-2 flex items-center justify-center rounded-md"><Image src="/college logo.png" height={50} width={40} alt="PSG logo"/></div>
+      <Image src="/logo.png" height={20} width={120} alt="CSEA logo"/>
+      </div>
     </div>
   );
 };

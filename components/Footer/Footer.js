@@ -6,10 +6,10 @@ const Footer = () => {
     return(
         <div className="mb-6">
             <TitleWithLine title="Contact" styles="text-xl font-bold" />
-            <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex flex-col-reverse md:flex-row gap-6">
                 <OtherLinksHolder />
                 <Glasscard styles="bg-green-500 w-full">
-                    Address and contact details go here...
+                    <span className="text-shadow">Address and contact details go here...</span>
                 </Glasscard>
                 {/* TODO: Insert Google Map here */}
             </div>
