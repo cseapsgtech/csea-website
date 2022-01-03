@@ -10,7 +10,7 @@ const HODDesk = (props) => {
           <div className="bg-gray-300 h-48 w-48 rounded-md shadow-xl mt-2"></div>
         </div>
         <div>
-          <div className="text-justify leading-loose textShadow">
+          <div className="text-justify leading-loose text-shadow">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem

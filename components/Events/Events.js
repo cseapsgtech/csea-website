@@ -1,6 +1,6 @@
 import EventCard from "./EventCard";
 import GlassTitleHolder from "../GlassTitleHolder";
-import SmallButton from "../SmallButton";
+import LinkButton from "../LinkButton";
 
 const Events = (props) => {
   let customStyleForViewAllEventsButton = {
@@ -10,15 +10,15 @@ const Events = (props) => {
     <div className="flex flex-col mb-6 md:flex-row gap-6">
       <div className="flex flex-col gap-3">
         <GlassTitleHolder title="E V E N T S" titleType="events"/>
-        <SmallButton
-          styles="bg-white"
+        <LinkButton
+          styles="px-4 py-2 bg-white"
           customCSS={customStyleForViewAllEventsButton}
         >
           View all <span className="font-semibold">Events</span>
-        </SmallButton>
-        <SmallButton styles="border-2 border-white">
+        </LinkButton>
+        <LinkButton styles="px-4 py-2 border-2 border-white">
           Suggest an <span className="font-semibold">Idea</span>
-        </SmallButton>
+        </LinkButton>
       </div>
       {/* Event Cards holder*/}
       <div className="flex flex-col md:flex-row overflow-x-auto overflow-y-hidden gap-6 md:pb-4">

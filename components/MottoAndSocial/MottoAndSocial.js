@@ -1,4 +1,5 @@
 import Glasscard from "../Glasscard";
+import LinkButton from "../LinkButton";
 import Image from "next/image";
 
 const MottoAndSocial = () => {
@@ -7,13 +8,16 @@ const MottoAndSocial = () => {
       {/*Motto*/}
       <Glasscard styles="flex-1 w-full md:my-0">
         <div className="flex flex-col items-center justify-center h-full p-4">
-          <div className="text-xl md:text-3xl text-center textShadow">
+          <div className="text-xl md:text-3xl text-center text-shadow">
             Motto of <span className="italic font-semibold">CSEA</span> goes
             here
           </div>
-          <button className="text-sm px-6 py-2 border-white border-2 rounded-lg mt-5 md:hover:bg-gray-700 textShadow">
+          <LinkButton
+            href="/teams"
+            styles="px-4 py-2 border-white border-2 rounded-lg mt-5 md:hover:bg-gray-700 text-shadow"
+          >
             Check out the <span className="font-semibold">TEAM</span>!
-          </button>
+          </LinkButton>
         </div>
       </Glasscard>
       {/*Social*/}
@@ -27,8 +31,8 @@ const MottoAndSocial = () => {
           >
             <Image
               src="/static/Social media icons/instagram.png"
-              height="48px"
-              width="48px"
+              height="100%"
+              width="100%"
               alt="Instagram logo"
             />
           </a>
@@ -41,8 +45,8 @@ const MottoAndSocial = () => {
           >
             <Image
               src="/static/Social media icons/twitter.png"
-              height="48px"
-              width="48px"
+              height="100%"
+              width="100%"
               alt="Twitter logo"
             />
           </a>
@@ -55,8 +59,8 @@ const MottoAndSocial = () => {
           >
             <Image
               src="/static/Social media icons/linkedin.png"
-              height="48px"
-              width="48px"
+              height="100%"
+              width="100%"
               alt="Linkedin logo"
             />
           </a>
@@ -69,8 +73,8 @@ const MottoAndSocial = () => {
           >
             <Image
               src="/static/Social media icons/youtube.png"
-              height="48px"
-              width="48px"
+              height="100%"
+              width="100%"
               alt="Blog logo"
             />
           </a>

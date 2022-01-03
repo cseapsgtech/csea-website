@@ -57,7 +57,7 @@ const EstimatedReadingTime = (props) => {
         </defs>
       </svg>
 
-      <span className="textShadow">{props.readingTime} minute read</span>
+      <span className="text-shadow">{props.readingTime} minute read</span>
     </div>
   );
 };

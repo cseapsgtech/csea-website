@@ -7,6 +7,7 @@ import SIC from "../components/SIC/SIC"
 import News from "../components/News/News"
 import HODDesk from "../components/HODDesk/HODDesk"
 import Team from "../components/Team/Team"
+import Footer from "../components/Footer/Footer"
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <HODDesk />
       <News />
       <Team />
+      <Footer />
     </div>
   )
 }

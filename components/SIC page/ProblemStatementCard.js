@@ -1,8 +1,8 @@
-import Glasscard from "./Glasscard.js";
-import TitleWithLine from "../components/TitleWithLine.js";
-import SICProbStatusIndicator from "../components/SICProbStatusIndicator.js";
-import CalendarIconAndDate from "../components/CalendarIconAndDate.js";
-import GradientButton from "../components/GradientButton.js";
+import Glasscard from "../Glasscard.js";
+import TitleWithLine from "../TitleWithLine.js";
+import SICProbStatusIndicator from "./SICProbStatusIndicator.js";
+import CalendarIconAndDate from "../CalendarIconAndDate.js";
+import GradientButton from "../GradientButton.js";
 
 const ProblemStatementCard = ({
   idx = 0,

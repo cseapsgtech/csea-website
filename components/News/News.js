@@ -1,6 +1,6 @@
 import NewsCard from "./NewsCard";
 import GlassTitleHolder from "../GlassTitleHolder";
-import SmallButton from "../SmallButton";
+import LinkButton from "../LinkButton";
 
 const News = (props) => {
   let customStyleForViewAllEventsButton = {
@@ -38,12 +38,12 @@ const News = (props) => {
       </div>
       <div className="flex flex-col gap-3">
         <GlassTitleHolder title="N E W S" titleType="news" />
-        <SmallButton
-          styles="bg-white"
+        <LinkButton
+          styles="px-4 py-2 bg-white"
           customCSS={customStyleForViewAllEventsButton}
         >
           View all <span className="font-semibold">News</span>
-        </SmallButton>
+        </LinkButton>
       </div>
     </div>
   );

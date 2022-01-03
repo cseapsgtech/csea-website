@@ -83,7 +83,7 @@ const CalendarIconAndDate = (props) => {
           strokeLinejoin="round"
         />
       </svg>
-      <span className="textShadow">{props.date}</span>
+      <span className="text-shadow">{props.date}</span>
     </div>
   );
 };

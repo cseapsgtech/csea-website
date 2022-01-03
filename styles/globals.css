@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Public+Sans:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Public+Sans:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap");
 
 * {
   box-sizing: border-box;
@@ -27,7 +27,7 @@ a {
   text-decoration: none;
 }
 
-.textShadow {
+.text-shadow {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -79,6 +79,22 @@ a {
 }
 
 /* Events and News card styling */
-.cardBorder {
+.card-border {
   border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+/* Team member image holder styling */
+.team-member-card{
+  margin-left:56px;
+}
+
+.team-member-image {
+  position: relative;
+  margin-left:-76px;
+}
+
+@media screen and (max-width:480px){
+  .team-member-card, .team-member-image{
+    margin-left:0px;
+  }
 }

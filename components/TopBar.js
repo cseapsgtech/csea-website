@@ -8,10 +8,23 @@ const Home = () => {
   return (
     <div className="py-8 flex justify-center md:justify-between items-center font-playfair">
       <div className="hidden md:block">
-        <Link href="/">Computer Science and Engineering Association</Link>
+        <Link href="/">
+          <button className="font-bold">
+            Computer Science and Engineering Association
+          </button>
+        </Link>
       </div>
+      {/* TODO: Resolve console error here */}
       <Link href="/">
-        <Image height={20} width={120} src={logo} alt="Logo of CSEA" className="cursor-pointer"/>
+        <a>
+          <Image
+            height={20}
+            width={120}
+            src={logo}
+            alt="CSEA logo"
+            className="cursor-pointer"
+          />
+        </a>
       </Link>
     </div>
   );
