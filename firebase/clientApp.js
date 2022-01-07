@@ -1,5 +1,4 @@
 import firebase from "firebase/compat/app";
-//import "firebase/auth";
 import "firebase/compat/firestore";
 
 const clientCredentials = {
