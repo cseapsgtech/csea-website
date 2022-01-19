@@ -1,67 +1,44 @@
 import TitleWithLine from "../TitleWithLine";
-import LinkButton from '../LinkButton';
+import LinkButton from "../LinkButton";
 import TeamCard from "./TeamCard";
+import Loading from "../Loading";
+import { useQuery } from 'react-query' 
 
 const Team = () => {
   let customStyleForShowAllMembersButton = {
     color: "#27C2C7",
   };
 
-  // TODO: Get team members list from API
-  const teamMembers = [
-    {
-      memberName: "Dhilip Sanjay S",
-      designation: "Secretary",
-      githubLink: "/",
-      linkedinLink: "/",
-    },
-    {
-      memberName: "Indrajit K V",
-      designation: "Front end developer",
-      githubLink: "/",
-      linkedinLink: "/",
-    },
-    {
-      memberName: "Dhilip Sanjay S",
-      designation: "Secretary",
-      githubLink: "/",
-      linkedinLink: "/",
-    },
-    {
-      memberName: "Indrajit K V",
-      designation: "Front end developer",
-      githubLink: "/",
-      linkedinLink: "/",
-    },
-    {
-      memberName: "Dhilip Sanjay S",
-      designation: "Secretary",
-      githubLink: "/",
-      linkedinLink: "/",
-    },
-    {
-      memberName: "Indrajit K V",
-      designation: "Front end developer",
-      githubLink: "/",
-      linkedinLink: "/",
-    },
-  ];
+  const { isLoading, error, data } = useQuery("team-members", async () => {
+    const response = await fetch("/api/teams");
+    return response.json();
+  });
+  
+  if(error){
+    console.error(error.message)
+  }
+
   return (
     <div>
       <TitleWithLine title="Team" styles="text-xl font-bold" />
-      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-stretch">
-        {teamMembers.slice(0, 6).map((member, index) => {
-          return (
-            <TeamCard
-              key={index}
-              memberName={member.memberName}
-              designation={member.designation}
-              githubLink={member.githubLink}
-              linkedinLink={member.linkedinLink}
-            />
-          );
-        })}
-      </div>
+      {isLoading ? (
+        <Loading heading="team members" />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-stretch">
+          {data.slice(0, 6).map(member => {
+            return (
+              <TeamCard
+                key={member.id}
+                memberName={member.name}
+                designation={member.designation}
+                githubLink={member.github}
+                linkedinLink={member.linkedin}
+              />
+            );
+          })}
+        </div>
+      )}
+
       <div className="w-max m-auto mb-6">
         <LinkButton
           href="/teams"

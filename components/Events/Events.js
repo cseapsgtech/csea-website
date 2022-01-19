@@ -1,16 +1,34 @@
 import EventCard from "./EventCard";
 import GlassTitleHolder from "../GlassTitleHolder";
 import LinkButton from "../LinkButton";
+import Loading from "../Loading";
+import { useQuery } from "react-query";
 
 const Events = (props) => {
   let customStyleForViewAllEventsButton = {
-    color: "#27C2C7"
+    color: "#27C2C7",
   };
+
+  const getDate = (seconds) => {
+    const date = new Date(seconds * 1000); // conversion from seconds to date
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  };
+
+  const { isLoading, error, data } = useQuery("events", async () => {
+    const response = await fetch("/api/events");
+    return response.json();
+  });
+
+  if (error) {
+    console.error(error.message);
+  }
+
   return (
     <div className="flex flex-col mb-6 md:flex-row gap-6">
       <div className="flex flex-col gap-3">
-        <GlassTitleHolder title="E V E N T S" titleType="events"/>
+        <GlassTitleHolder title="E V E N T S" titleType="events" />
         <LinkButton
+          href="/events"
           styles="px-4 py-2 bg-white"
           customCSS={customStyleForViewAllEventsButton}
         >
@@ -21,33 +39,31 @@ const Events = (props) => {
         </LinkButton>
       </div>
       {/* Event Cards holder*/}
-      <div className="flex flex-col md:flex-row overflow-x-auto overflow-y-hidden gap-6 md:pb-4">
-        <EventCard
-          title="Event 1 with a very long event name that will be cut off using ellipsis"
-          date="23/10/2021"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet."
-        />
-        <EventCard
-          title="Event 2"
-          date="23/10/2021"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet."
-        />
-        <EventCard
-          title="Event 3"
-          date="23/10/2021"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet."
-        />
-        <EventCard
-          title="Event 4"
-          date="23/10/2021"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet."
-        />
-        <EventCard
-          title="Event 5"
-          date="23/10/2021"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet."
-        />
-      </div>
+      {isLoading ? (
+        <Loading heading="events" />
+      ) : (
+        <div className="flex flex-col md:flex-row overflow-x-auto overflow-y-hidden gap-6 md:pb-4">
+          {data
+            .sort((a,b) => {
+              // Turn seconds into dates, and then subtract them
+              // to get a value that is either negative, positive, or zero.
+              return new Date(b.date.seconds * 1000) - new Date(a.date.seconds * 1000);
+            })
+            .slice(0, 5)
+            .map((event) => {
+              return (
+                <EventCard
+                  key={event.id}
+                  title={event.name}
+                  date={getDate(event.date.seconds)}
+                  content={event.desc}
+                  imageSrc={event.poster_link}
+                  forList={event.participants}
+                />
+              );
+            })}
+        </div>
+      )}
     </div>
   );
 };
