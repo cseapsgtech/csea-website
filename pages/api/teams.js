@@ -1,6 +1,6 @@
 import firebase from "../../firebase/clientApp";
 
-export default (req, res) => {
+export default function handler(req, res) {
   const eventsRef = firebase.firestore().collection("teams");
 
   eventsRef.get().then(
