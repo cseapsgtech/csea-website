@@ -11,7 +11,8 @@ const Team = () => {
 
   const { isLoading, error, data } = useQuery("team-members", async () => {
     const response = await fetch("/api/teams");
-    return response.json();
+    const jsonresponse = await response.json();
+    return jsonresponse;
   });
   
   if(error){

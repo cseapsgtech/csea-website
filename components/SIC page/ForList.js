@@ -2,36 +2,36 @@ import GradientButton from "../GradientButton.js";
 
 const ForList = ({ forList, buttonType = "normal" }) => {
   return (
-    <div className="flex gap-2 my-6 flex-wrap">
+    <div className="flex gap-2 my-4 flex-wrap">
       {forList.map((item, index) => {
         if (item === "1") {
           return (
             <GradientButton key={index} buttonType={buttonType} noHover>
-              1st Year
+              1st year
             </GradientButton>
           );
         } else if (item === "2") {
           return (
             <GradientButton key={index} buttonType={buttonType} noHover>
-              2nd Year
+              2nd year
             </GradientButton>
           );
         } else if (item === "3") {
           return (
             <GradientButton key={index} buttonType={buttonType} noHover>
-              3rd Year
+              3rd year
             </GradientButton>
           );
-        } else if (item === "M.E.") {
+        } else if (item === "M.E. final year") {
           return (
             <GradientButton key={index} buttonType={buttonType} noHover>
-              M.E.
+              M.E. final year
             </GradientButton>
           );
         } else {
           return (
             <GradientButton key={index} buttonType={buttonType} noHover>
-              {item}th Year
+              {item}th year
             </GradientButton>
           );
         }

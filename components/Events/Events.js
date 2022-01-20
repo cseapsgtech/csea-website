@@ -16,7 +16,8 @@ const Events = (props) => {
 
   const { isLoading, error, data } = useQuery("events", async () => {
     const response = await fetch("/api/events");
-    return response.json();
+    const jsonresponse = await response.json();
+    return jsonresponse;
   });
 
   if (error) {
@@ -29,12 +30,16 @@ const Events = (props) => {
         <GlassTitleHolder title="E V E N T S" titleType="events" />
         <LinkButton
           href="/events"
-          styles="px-4 py-2 bg-white"
+          styles="px-4 py-2 bg-white w-full"
           customCSS={customStyleForViewAllEventsButton}
         >
           View all <span className="font-semibold">Events</span>
         </LinkButton>
-        <LinkButton styles="px-4 py-2 border-2 border-white">
+        <LinkButton
+          href="https://forms.gle/LhP3Cza4xS3hAuLV7"
+          styles="px-4 py-2 border-2 border-white w-full"
+          externalLink
+        >
           Suggest an <span className="font-semibold">Idea</span>
         </LinkButton>
       </div>
@@ -44,10 +49,13 @@ const Events = (props) => {
       ) : (
         <div className="flex flex-col md:flex-row overflow-x-auto overflow-y-hidden gap-6 md:pb-4">
           {data
-            .sort((a,b) => {
+            .sort((a, b) => {
               // Turn seconds into dates, and then subtract them
               // to get a value that is either negative, positive, or zero.
-              return new Date(b.date.seconds * 1000) - new Date(a.date.seconds * 1000);
+              return (
+                new Date(b.date.seconds * 1000) -
+                new Date(a.date.seconds * 1000)
+              );
             })
             .slice(0, 5)
             .map((event) => {

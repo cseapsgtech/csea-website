@@ -15,7 +15,7 @@ const OtherLinksHolder = () => {
           <a className="text-shadow my-2">Feedback</a>
         </Link>
         <Link href="/">
-          <a className="text-shadow my-2">PSG Tech Official Website</a>
+          <a className="text-shadow my-2" href="https://www.psgtech.edu/" rel="noopener noreferrer" target="_blank">PSG Tech Official Website</a>
         </Link>
       </div>
       <div className="w-full my-3 bg-white h-0.5 shadow-xl"></div>

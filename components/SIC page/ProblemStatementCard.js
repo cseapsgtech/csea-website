@@ -5,18 +5,14 @@ import CalendarIconAndDate from "../CalendarIconAndDate.js";
 import ForList from './ForList';
 
 const ProblemStatementCard = ({
-  idx = 0,
-  statement = `Problem statement goes here - Lorem ipsum dolor sit amet,
-    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-    exercitation ullamco laboris.`,
-  endDate = "31st Feb, 2021",
-  isExpired = false,
-  forList = ["1", "2", "3", "4"]
+  statement,
+  endDate,
+  isExpired,
+  forList
 }) => {
   return (
-    <Glasscard styles="shadow-lg hover:bg-gray-600 hover:bg-opacity-25 cursor-pointer">
-      <TitleWithLine title={`Problem ${idx}`} />
+    <Glasscard styles="shadow-lg hover:bg-gray-600 hover:bg-opacity-25 cursor-pointer h-fit">
+      <TitleWithLine title={`Problem Statement`} />
       <p className="text-md text-justify w-full leading-loose">{statement}</p>
       <div className="my-2">
         <ForList forList={forList} />
