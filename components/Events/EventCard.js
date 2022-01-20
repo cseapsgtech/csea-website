@@ -17,13 +17,14 @@ const EventCard = (props) => {
             height="100%"
             alt={props.title + " poster"}
             layout="responsive"
-            objectFit="contain"
+            objectFit="cover"
           />
         </div>
         {/* Info holder */}
         <div
           className="flex-grow pt-4 md:pt-0 md:w-72 md:pl-4 line-clamp-5 md:line-clamp-3 text-justify leading-loose antialiased text-shadow"
           style={{ height: "fit-content" }}
+          title={props.content}
         >
           {props.content}
         </div>

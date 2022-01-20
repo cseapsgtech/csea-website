@@ -23,6 +23,7 @@ const Teams = ({ teamMembers }) => {
             <TeamCard
               key={index}
               memberName={member.name}
+              imageSrc={member.picture_link}
               designation={member.designation}
               githubLink={member.github}
               linkedinLink={member.linkedin}
