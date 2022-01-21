@@ -8,20 +8,29 @@ const TeamCard = (props) => {
       <Glasscard>
         <div className="flex flex-row">
           {/* Image holder */}
-          <div className="bg-gray-300 h-20 w-20 md:h-28 md:w-28 shadow-xl rounded-md team-member-image overflow-hidden">
-          <Image
-            src={props.imageSrc}
-            width="100%"
-            height="100%"
-            alt={props.title + " poster"}
-            layout="responsive"
-            objectFit="cover"
-          />
+          <div className="rounded-full bg-gray-300 h-20 w-20 xsm:h-28 xsm:w-28 shadow-xl xsm:rounded-md team-member-image overflow-hidden">
+            {props.imageSrc && (
+              <Image
+                src={props.imageSrc}
+                width="100%"
+                height="100%"
+                alt={props.title + " poster"}
+                layout="responsive"
+                objectFit="cover"
+              />
+            )}
           </div>
           <div className="flex flex-col ml-4 gap-1 justify-center md:w-9/12">
-            <span className="font-playfair text-xl font-bold text-shadow line-clamp-1">{props.memberName}</span>
-            <span className="font-playfair text-sm text-shadow line-clamp-1">{props.designation}</span>
-            <IconsHolder githubLink={props.githubLink} linkedinLink={props.linkedinLink} />
+            <span className="font-playfair text-xl font-bold text-shadow line-clamp-1">
+              {props.memberName}
+            </span>
+            <span className="font-playfair text-sm text-shadow line-clamp-1">
+              {props.designation}
+            </span>
+            <IconsHolder
+              githubLink={props.githubLink}
+              linkedinLink={props.linkedinLink}
+            />
           </div>
         </div>
       </Glasscard>

@@ -2,28 +2,58 @@ import Glasscard from "../Glasscard";
 import UpcomingEvent from "./UpcomingEvent";
 import TitleWithLine from "../TitleWithLine";
 import GalleryContainer from "./GalleryContainer";
+import Loading from "../Loading";
+import { useQuery } from "react-query";
 
 const UpcomingEventsAndGallery = () => {
+  const getDate = (seconds) => {
+    const date = new Date(seconds * 1000); // conversion from seconds to date
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  };
+
+  const { isLoading, error, data } = useQuery("upcoming-events", async () => {
+    const response = await fetch("/api/events/upcoming");
+    const jsonresponse = await response.json();
+    return jsonresponse;
+  });
+
+  if (error) {
+    console.error(error.message);
+  }
+
   return (
     <div className="flex flex-col gap-6 mb-6 md:flex-row w-full">
       {/*Upcoming events*/}
       <Glasscard styles="w-full md:w-max">
         <TitleWithLine title="Upcoming events" />
         {/*After fetching the result of API call to obtain upcoming events, use map function to generate the component for each upcoming event*/}
-        <div className="overflow-auto flex flex-col justify-between gap-y-8 pr-3" style={{height: "500px"}}>
-          <UpcomingEvent title="Upcoming Event 1 with a long event name" date="23/10/2021" />
-          <UpcomingEvent title="Upcoming Event 2" date="23/10/2021" />
-          <UpcomingEvent title="Upcoming Event 3" date="23/10/2021" />
-          <UpcomingEvent title="Upcoming Event 4" date="23/10/2021" />
-          <UpcomingEvent title="Upcoming Event 5" date="23/10/2021" />
-        </div>
+        {isLoading ? (
+          <div className="w-full md:w-max px-8">
+            <Loading heading="events" />
+          </div>
+        ) : (
+          <div className="mb-2 xsm:mb-0 overflow-auto flex flex-col gap-y-8 xsm:pr-3 mt-4 h-fill xsm:max-h-128">
+            {data.map((uc) => {
+              return (
+                <UpcomingEvent
+                  key={uc.id}
+                  title={uc.name}
+                  date={getDate(uc.date.seconds)}
+                  imageSrc={uc.poster_link}
+                />
+              );
+            })}
+          </div>
+        )}
       </Glasscard>
       {/*Gallery*/}
       <Glasscard styles="w-full">
         <TitleWithLine title="Gallery" />
         <div
-          className="grid gap-3 overflow-auto pr-3"
-          style={{ height: "500px", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}
+          className="grid gap-3 overflow-auto md:pr-3 mt-4 h-fill md:max-h-128"
+          style={{
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+          }}
         >
           {/*After fetching the result of API call to obtain upcoming events, use map function to generate the component for each upcoming event*/}
           <GalleryContainer

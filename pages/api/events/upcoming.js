@@ -1,7 +1,11 @@
-import firebase from "../../firebase/clientApp";
+import firebase from "../../../firebase/clientApp";
 
 export default function handler(req, res) {
-  const eventsRef = firebase.firestore().collection("events");
+
+  var startOfToday = new Date(); 
+  startOfToday.setHours(0,0,0,0);
+
+  const eventsRef = firebase.firestore().collection("events").where("date", ">=", startOfToday);
 
   eventsRef.get().then(
     (snapshot) => {

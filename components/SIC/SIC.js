@@ -7,17 +7,20 @@ const SIC = (props) => {
     <Glasscard styles="mb-6 flex flex-col items-start justify-center">
       <TitleWithLine title="SIC" styles="text-xl font-bold" />
       <p className="text-justify leading-loose text-shadow">
-        Description about SIC goes here - Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris.
+        We, Student Interaction Corner aim to increase the Senior - Junior
+        interaction by conducting frequent meet ups and discuss on-demand topics
+        to familiarise with various aspects. We will be speaking about wide
+        range of topics and also collect periodic feedbacks to constantly
+        improve the quality of content delivered. Also, this acts as a platform
+        where juniors can get a chance to interact with like minded seniors and
+        also get their valuable suggestions and experience.
       </p>
-        <LinkButton
-          href="/sic"
-          styles="px-4 py-2 bg-white mt-4 mb-2 grad-button m-auto"
-        >
-          View <span className="font-semibold">problem statements</span>
-        </LinkButton>
+      <LinkButton
+        href="/sic"
+        styles="px-4 py-2 bg-white mt-4 mb-2 grad-button m-auto"
+      >
+        View <span className="font-semibold">problem statements</span>
+      </LinkButton>
     </Glasscard>
   );
 };

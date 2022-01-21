@@ -8,7 +8,8 @@
   box-sizing: border-box;
 }
 
-html,body {
+html,
+body {
   @apply px-2 md:px-6;
   font-family: "Public Sans", sans-serif;
   color: white;
@@ -84,17 +85,18 @@ a {
 }
 
 /* Team member image holder styling */
-.team-member-card{
-  margin-left:56px;
+.team-member-card {
+  margin-left: 56px;
 }
 
 .team-member-image {
   position: relative;
-  margin-left:-76px;
+  margin-left: -76px;
 }
 
-@media screen and (max-width:480px){
-  .team-member-card, .team-member-image{
-    margin-left:0px;
+@media screen and (max-width: 480px) {
+  .team-member-card,
+  .team-member-image {
+    margin-left: 0px;
   }
 }
