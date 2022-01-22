@@ -9,7 +9,7 @@ const MottoAndSocial = () => {
       <Glasscard styles="flex-1 w-full md:my-0">
         <div className="flex flex-col justify-center items-center xsm:items-start p-2 md:p-4 h-full">
           <a className="hidden xsm:block text-xl md:text-2xl text-right w-full text-shadow font-playfair">
-            What is CSEA?
+            About CSEA
           </a>
           <div className="hidden xsm:block w-full my-4 bg-white h-0.5 shadow-xl"></div>
           <div className="text-base leading-loose md:text-lg text-justify text-shadow md:leading-loose font-playfair">
