@@ -7,7 +7,7 @@ import Image from "next/image";
 const EventCard = (props) => {
   return (
     <div className="card-border rounded-lg px-6 py-8 md:p-6 flex flex-col sm:min-w-max">
-      <TitleWithLine title={props.title} styles="md:w-96 uppercase" />
+      <TitleWithLine title={props.title} styles="sm:w-96 uppercase text-lg md:text-base" />
       <div className="flex flex-col sm:flex-row">
         {/* Image holder */}
         <div className="bg-gray-300 rounded-md w-full mt-2 sm:h-28 sm:w-28 shadow-xl overflow-hidden">

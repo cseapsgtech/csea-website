@@ -14,19 +14,23 @@ const TeamCard = (props) => {
                 src={props.imageSrc}
                 width="100%"
                 height="100%"
-                alt={props.title + " poster"}
+                alt={"Picture of " + props.memberName}
                 layout="responsive"
                 objectFit="cover"
               />
             )}
           </div>
-          <div className="flex flex-col ml-4 gap-1 justify-center md:w-9/12">
+          <div className="flex flex-col ml-4 gap-1 justify-center w-6/12 xsm:w-9/12">
             <span className="font-playfair text-xl font-bold text-shadow line-clamp-1">
               {props.memberName}
             </span>
-            <span className="font-playfair text-sm text-shadow line-clamp-1">
+            <span className="font-playfair text-md text-shadow line-clamp-1 font-bold">
               {props.designation}
             </span>
+            <span className="font-playfair text-sm text-shadow line-clamp-1">
+              {props.academicTitle}
+            </span>
+            
             <IconsHolder
               githubLink={props.githubLink}
               linkedinLink={props.linkedinLink}

@@ -2,7 +2,7 @@ import TitleWithLine from "../TitleWithLine";
 import LinkButton from "../LinkButton";
 import TeamCard from "./TeamCard";
 import Loading from "../Loading";
-import { useQuery } from 'react-query' 
+import { useQuery } from "react-query";
 
 const Team = () => {
   let customStyleForShowAllMembersButton = {
@@ -14,9 +14,9 @@ const Team = () => {
     const jsonresponse = await response.json();
     return jsonresponse;
   });
-  
-  if(error){
-    console.error(error.message)
+
+  if (error) {
+    console.error(error.message);
   }
 
   return (
@@ -26,18 +26,22 @@ const Team = () => {
         <Loading heading="team members" />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-stretch">
-          {data.slice(0, 6).map(member => {
-            return (
-              <TeamCard
-                key={member.id}
-                memberName={member.name}
-                imageSrc={member.picture_link}
-                designation={member.designation}
-                githubLink={member.github}
-                linkedinLink={member.linkedin}
-              />
-            );
-          })}
+          {data
+            .sort((a, b) => a.index - b.index)
+            .slice(0, 6)
+            .map((member) => {
+              return (
+                <TeamCard
+                  key={member.id}
+                  memberName={member.name}
+                  academicTitle={member.academic_title}
+                  imageSrc={member.picture_link}
+                  designation={member.designation}
+                  githubLink={member.github}
+                  linkedinLink={member.linkedin}
+                />
+              );
+            })}
         </div>
       )}
 

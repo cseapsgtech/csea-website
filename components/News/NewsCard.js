@@ -7,7 +7,7 @@ const NewsCard = (props) => {
     <div
       className="card-border rounded-lg px-6 py-8 md:p-6 flex flex-col sm:min-w-max"
     >
-      <TitleWithLine title={props.title} styles="md:w-96" />
+      <TitleWithLine title={props.title} styles="sm:w-96" />
       <div className="flex flex-col sm:flex-row justify-center">
         {/* Image holder */}
         <div className="bg-gray-300 rounded-md h-60 w-full sm:h-28 sm:w-28 shadow-xl sm:mt-2"></div>

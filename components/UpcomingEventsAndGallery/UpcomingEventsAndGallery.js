@@ -24,28 +24,38 @@ const UpcomingEventsAndGallery = () => {
   return (
     <div className="flex flex-col gap-6 mb-6 md:flex-row w-full">
       {/*Upcoming events*/}
-      <Glasscard styles="w-full md:w-max">
+
+      <Glasscard styles={`w-full md:w-max ${isLoading && "h-3/6"}`}>
         <TitleWithLine title="Upcoming events" />
-        {/*After fetching the result of API call to obtain upcoming events, use map function to generate the component for each upcoming event*/}
         {isLoading ? (
           <div className="w-full md:w-max px-8">
             <Loading heading="events" />
           </div>
         ) : (
-          <div className="mb-2 xsm:mb-0 overflow-auto flex flex-col gap-y-8 xsm:pr-3 mt-4 h-fill xsm:max-h-128">
-            {data.map((uc) => {
-              return (
-                <UpcomingEvent
-                  key={uc.id}
-                  title={uc.name}
-                  date={getDate(uc.date.seconds)}
-                  imageSrc={uc.poster_link}
-                />
-              );
-            })}
+          <div className="mb-2 xsm:mb-0 overflow-auto flex flex-col gap-y-8 xsm:pr-3 mt-4 xsm:max-h-128">
+            {data
+              .sort((a, b) => {
+                // Turn seconds into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return (
+                  new Date(b.date.seconds * 1000) -
+                  new Date(a.date.seconds * 1000)
+                );
+              })
+              .map((uc) => {
+                return (
+                  <UpcomingEvent
+                    key={uc.id}
+                    title={uc.name}
+                    date={getDate(uc.date.seconds)}
+                    imageSrc={uc.poster_link}
+                  />
+                );
+              })}
           </div>
         )}
       </Glasscard>
+
       {/*Gallery*/}
       <Glasscard styles="w-full">
         <TitleWithLine title="Gallery" />

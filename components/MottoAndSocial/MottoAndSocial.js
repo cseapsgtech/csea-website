@@ -7,14 +7,21 @@ const MottoAndSocial = () => {
     <div className="flex w-full flex-col gap-6 mb-6 md:flex-row">
       {/*Motto*/}
       <Glasscard styles="flex-1 w-full md:my-0">
-        <div className="flex flex-col items-center justify-center h-full p-4">
-          <div className="text-2xl md:text-3xl text-center text-shadow">
-            Motto of <span className="italic font-semibold">CSEA</span> goes
-            here
+        <div className="flex flex-col justify-center items-center xsm:items-start p-2 md:p-4 h-full">
+          <a className="hidden xsm:block text-xl md:text-2xl text-right w-full text-shadow font-playfair">
+            What is CSEA?
+          </a>
+          <div className="hidden xsm:block w-full my-4 bg-white h-0.5 shadow-xl"></div>
+          <div className="text-base leading-loose md:text-lg text-justify text-shadow md:leading-loose font-playfair">
+            CSEA, the disciplinary association for the department of Computer
+            Science and Engineering, <span className="font-semibold">stands as a platform to help the students
+            enhance their practical knowledge and technical skills through
+            various events like group discussions, seminars, workshops, guest
+            lectures and various other competitions.</span>
           </div>
           <LinkButton
             href="/teams"
-            styles="px-4 py-2 border-white border-2 rounded-lg mt-5 md:hover:bg-gray-700 text-shadow"
+            styles="px-4 py-2 border-white border-2 rounded-lg mt-4 md:hover:bg-gray-700 text-shadow w-max"
           >
             Check out the <span className="font-semibold">TEAM</span>!
           </LinkButton>

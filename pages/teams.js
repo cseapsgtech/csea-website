@@ -18,18 +18,21 @@ const Teams = ({ teamMembers }) => {
       </Glasscard>
       {/* Displaying all team members */}
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 mb-6">
-        {teamMembers.map((member, index) => {
-          return (
-            <TeamCard
-              key={index}
-              memberName={member.name}
-              imageSrc={member.picture_link}
-              designation={member.designation}
-              githubLink={member.github}
-              linkedinLink={member.linkedin}
-            />
-          );
-        })}
+        {teamMembers
+          .sort((a, b) => a.index - b.index)
+          .map((member, index) => {
+            return (
+              <TeamCard
+                key={index}
+                memberName={member.name}
+                academicTitle={member.academic_title}
+                imageSrc={member.picture_link}
+                designation={member.designation}
+                githubLink={member.github}
+                linkedinLink={member.linkedin}
+              />
+            );
+          })}
       </div>
     </div>
   );
