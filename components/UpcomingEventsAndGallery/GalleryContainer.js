@@ -1,16 +1,21 @@
+import Image from 'next/image'
+
 const GalleryContainer = ({ img }) => {
 
-  // // TODO: Gallery CSS to be improved
   return (
-    <div className="w-full">
-      <img
-        src={img}
-        className="h-60 w-full rounded-md object-cover"
-        alt="gallery image"
-      />
-      {/* <div className="px-3 py-2 text-white text-sm text-center text-shadow">
-        {caption}
-      </div> */}
+    <div>
+      <div className="bg-gray-300 rounded-md overflow-hidden">
+        {img && (
+          <Image
+            src={img}
+            width="100%"
+            height="100%"
+            alt="gallery image"
+            layout="responsive"
+            objectFit="cover"
+          />
+        )}
+      </div>
     </div>
   );
 };

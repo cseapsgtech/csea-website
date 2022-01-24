@@ -106,7 +106,7 @@ const UpcomingEventsAndGallery = () => {
           <div
             className="grid gap-3 overflow-auto md:pr-3 mt-4 h-fill md:max-h-128"
             style={{
-              gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
             }}
           >
             {images.map((imageLink, index) => {

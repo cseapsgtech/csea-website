@@ -63,7 +63,7 @@ const Events = () => {
               height="100%"
               alt={event.name + " poster"}
               layout="responsive"
-              objectFit="contain"
+              objectFit="cover"
             />
           )}
         </div>
