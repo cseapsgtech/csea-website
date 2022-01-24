@@ -1,7 +1,7 @@
-import TopBar from "../components/TopBar";
+import TopBar from "../../components/TopBar";
 import Head from "next/head";
-import Glasscard from "../components/Glasscard";
-import EventCard from "../components/Events/EventCard";
+import Glasscard from "../../components/Glasscard";
+import EventCard from "../../components/Events/EventCard";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
 const Events = () => {

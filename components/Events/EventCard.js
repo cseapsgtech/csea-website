@@ -37,7 +37,7 @@ const EventCard = (props) => {
       </div>
       <div className="mt-2 flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between">
         <CalendarIconAndDate date={props.date} />
-        <LinkButton href="/sic" styles="py-2 px-4 w-max rounded-lg grad-button">
+        <LinkButton href={props.href} styles="py-2 px-4 w-max rounded-lg grad-button">
           Check out <span className="font-semibold">EVENT!</span>
         </LinkButton>
       </div>

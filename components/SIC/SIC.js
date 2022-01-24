@@ -5,7 +5,7 @@ import TitleWithLine from "../TitleWithLine";
 const SIC = (props) => {
   return (
     <Glasscard styles="mb-6 flex flex-col items-start justify-center">
-      <TitleWithLine title="SIC" styles="text-xl font-bold" />
+      <TitleWithLine title="Students Interaction Corner" styles="text-xl font-bold" />
       <p className="text-justify leading-loose text-shadow">
         We, Student Interaction Corner aim to increase the Senior - Junior
         interaction by conducting frequent meet ups and discuss on-demand topics

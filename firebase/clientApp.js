@@ -1,4 +1,5 @@
 import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
 import "firebase/compat/firestore";
 
 const clientCredentials = {
@@ -14,4 +15,6 @@ if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials);
 }
 
-export default firebase;
+const storage = firebase.storage();
+
+export { firebase, storage };

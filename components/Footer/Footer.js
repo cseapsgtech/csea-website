@@ -16,6 +16,8 @@ const Footer = () => {
               Address
             </p>
             <span className="leading-loose">
+              Department of Computer Science and Engineering,
+              <br />
               Post Box No. 1611,
               <br />
               Peelamedu,

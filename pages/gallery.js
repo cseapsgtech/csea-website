@@ -1,10 +1,11 @@
 import TopBar from "../components/TopBar"
+import Loading from "../components/Loading"
 
 export default function Gallery() {
     return (
       <div>
         <TopBar />
-        <h1>Gallery Page</h1>
+        <Loading heading="gallery"/>
       </div>
     )
 }

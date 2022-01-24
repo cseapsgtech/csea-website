@@ -5,7 +5,6 @@ import ProblemStatementCard from "../components/SIC page/ProblemStatementCard.js
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
 const SIC = () => {
-
   const { data: probStatements } = useQuery(
     "sic",
     async () => {
@@ -44,7 +43,14 @@ const SIC = () => {
             Student Interaction Corner
           </div>
           <p className="mt-6 text-justify leading-loose text-shadow">
-          We, Student Interaction Corner aim to increase the Senior - Junior interaction by conducting frequent meet ups and discuss on-demand topics to familiarise with various aspects. We will be speaking about wide range of topics and also collect periodic feedbacks to constantly improve the quality of content delivered. Also, this acts as a platform where juniors can get a chance to interact with like minded seniors and also get their valuable suggestions and experience.
+            We, Student Interaction Corner aim to increase the Senior - Junior
+            interaction by conducting frequent meet ups and discuss on-demand
+            topics to familiarise with various aspects. We will be speaking
+            about wide range of topics and also collect periodic feedbacks to
+            constantly improve the quality of content delivered. Also, this acts
+            as a platform where juniors can get a chance to interact with like
+            minded seniors and also get their valuable suggestions and
+            experience.
           </p>
           {/* <LinkButton
             href="/"
@@ -60,7 +66,8 @@ const SIC = () => {
             // Turn seconds into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return (
-              new Date(b.end_date.seconds * 1000) - new Date(a.end_date.seconds * 1000)
+              new Date(b.end_date.seconds * 1000) -
+              new Date(a.end_date.seconds * 1000)
             );
           })
           .map((ps) => {

@@ -26,7 +26,7 @@ const UpcomingEvent = (props) => {
           {props.title}
         </span>
         <CalendarIconAndDate date={props.date} styles="mt-3 mb-4" />
-        <LinkButton href="/sic" styles="py-2 px-4 w-max rounded-lg grad-button">
+        <LinkButton href={props.href} styles="py-2 px-4 w-max rounded-lg grad-button">
           Check out <span className="font-semibold">EVENT!</span>
         </LinkButton>
       </div>

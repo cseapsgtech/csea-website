@@ -75,6 +75,7 @@ const Events = (props) => {
                   content={event.desc}
                   imageSrc={event.poster_link}
                   forList={event.participants}
+                  href={`/events/${event.id}`}
                 />
               );
             })}
