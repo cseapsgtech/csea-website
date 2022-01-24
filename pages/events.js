@@ -2,8 +2,23 @@ import TopBar from "../components/TopBar";
 import Head from "next/head";
 import Glasscard from "../components/Glasscard";
 import EventCard from "../components/Events/EventCard";
+import { dehydrate, QueryClient, useQuery } from "react-query";
 
-const Events = ({ events }) => {
+const Events = () => {
+
+  const { data } = useQuery(
+    "events",
+    async () => {
+      const response = await fetch("/api/events");
+      const jsonresponse = await response.json();
+      return jsonresponse;
+    },
+    {
+      keepPreviousData: true,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const getDate = (seconds) => {
     const date = new Date(seconds * 1000); // conversion from seconds to date
@@ -24,7 +39,7 @@ const Events = ({ events }) => {
       </Glasscard>
       {/* Displaying all events */}
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 mb-6">
-        {events
+        {data
           .sort((a, b) => {
             // Turn seconds into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
@@ -61,23 +76,37 @@ export const getServerSideProps = async (context) => {
   // context.req.headers.host provides the host name
   let host = context.req.headers.host;
 
-  const res = await fetch(`${httpProtocol}://${host}/api/events`);
-  const events = await res.json();
+  // code for prefetching data from server using react-query
+  const queryClient = new QueryClient();
 
-  if (!events) {
-    return {
-      // The notFound boolean allows the page to return a 404 status and 404 Page
-      notFound: true,
-    };
-  }
+  await queryClient.prefetchQuery("events", async () => {
+    const response = await fetch(`${httpProtocol}://${host}/api/events`);
+    const jsonresponse = await response.json();
+    return jsonresponse;
+  });
 
   return {
     props: {
-      events,
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
-    // Used for ISR
-    // revalidate: 100, // In seconds
   };
+
+  // // alternative code
+  // const res = await fetch(`${httpProtocol}://${host}/api/events`);
+  // const events = await res.json();
+
+  // if (!events) {
+  //   return {
+  //     // The notFound boolean allows the page to return a 404 status and 404 Page
+  //     notFound: true,
+  //   };
+  // }
+
+  // return {
+  //   props: {
+  //     events,
+  //   },
+  // };
 };
 
 export default Events;

@@ -4,7 +4,7 @@ import MottoAndSocial from "../components/MottoAndSocial/MottoAndSocial"
 import UpcomingEventsAndGallery from "../components/UpcomingEventsAndGallery/UpcomingEventsAndGallery"
 import Events from "../components/Events/Events"
 import SIC from "../components/SIC/SIC"
-import News from "../components/News/News"
+// import News from "../components/News/News"
 import HODDesk from "../components/HODDesk/HODDesk"
 import Team from "../components/Team/Team"
 import Footer from "../components/Footer/Footer"
@@ -22,7 +22,7 @@ export default function Home() {
       <Events />
       <SIC />
       <HODDesk />
-      <News />
+      {/* <News /> */}
       <Team />
       <Footer />
     </div>

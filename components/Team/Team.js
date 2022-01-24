@@ -9,11 +9,19 @@ const Team = () => {
     color: "#27C2C7",
   };
 
-  const { isLoading, error, data } = useQuery("team-members", async () => {
-    const response = await fetch("/api/teams");
-    const jsonresponse = await response.json();
-    return jsonresponse;
-  });
+  const { isLoading, error, data } = useQuery(
+    "teams",
+    async () => {
+      const response = await fetch("/api/teams");
+      const jsonresponse = await response.json();
+      return jsonresponse;
+    },
+    {
+      keepPreviousData: true,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   if (error) {
     console.error(error.message);

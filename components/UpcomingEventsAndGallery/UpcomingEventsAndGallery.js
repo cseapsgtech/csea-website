@@ -11,11 +11,19 @@ const UpcomingEventsAndGallery = () => {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
-  const { isLoading, error, data } = useQuery("upcoming-events", async () => {
-    const response = await fetch("/api/events/upcoming");
-    const jsonresponse = await response.json();
-    return jsonresponse;
-  });
+  const { isLoading, error, data } = useQuery(
+    "upcoming-events",
+    async () => {
+      const response = await fetch("/api/events/upcoming");
+      const jsonresponse = await response.json();
+      return jsonresponse;
+    },
+    {
+      keepPreviousData: true,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   if (error) {
     console.error(error.message);

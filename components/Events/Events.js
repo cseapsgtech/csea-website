@@ -14,11 +14,19 @@ const Events = (props) => {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
-  const { isLoading, error, data } = useQuery("events", async () => {
-    const response = await fetch("/api/events");
-    const jsonresponse = await response.json();
-    return jsonresponse;
-  });
+  const { isLoading, error, data } = useQuery(
+    "events",
+    async () => {
+      const response = await fetch("/api/events");
+      const jsonresponse = await response.json();
+      return jsonresponse;
+    },
+    {
+      keepPreviousData: true,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   if (error) {
     console.error(error.message);
