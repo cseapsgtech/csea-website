@@ -29,7 +29,7 @@ const MottoAndSocial = () => {
       </Glasscard>
       {/*Social*/}
       <Glasscard>
-        <div className="flex flex-row w-full justify-evenly items-center gap-x-8 md:flex-col md:gap-x-0 md:gap-y-2">
+        <div className="flex flex-row w-full h-full justify-around items-center gap-x-8 md:flex-col md:gap-x-0 md:gap-y-2">
           <a
             target="_blank"
             rel="noreferrer noopener"
@@ -72,7 +72,7 @@ const MottoAndSocial = () => {
             />
           </a>
 
-          <a
+          {/* <a
             target="_blank"
             rel="noreferrer noopener"
             href="#"
@@ -84,7 +84,7 @@ const MottoAndSocial = () => {
               width="100%"
               alt="Blog logo"
             />
-          </a>
+          </a> */}
         </div>
       </Glasscard>
     </div>

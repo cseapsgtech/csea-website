@@ -49,7 +49,7 @@ const Events = () => {
       <TopBar />
       <Glasscard styles="flex-1 w-full mb-6">
         <div className="flex flex-col items-center justify-center h-full p-4">
-          <div className="text-xl md:text-3xl text-center">{event.name}</div>
+          <div className="text-2xl md:text-3xl text-center">{event.name}</div>
         </div>
       </Glasscard>
       {/* Displaying event details */}

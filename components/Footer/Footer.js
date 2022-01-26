@@ -35,7 +35,6 @@ const Footer = () => {
             </span>
           </div>
         </Glasscard>
-        {/* TODO: Insert Google Map here */}
         <MapHolder />
       </div>
     </div>

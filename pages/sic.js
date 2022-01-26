@@ -39,7 +39,7 @@ const SIC = () => {
       <TopBar />
       <Glasscard styles="flex-1 w-full mb-6">
         <div className="flex flex-col items-center justify-center h-full p-4">
-          <div className="text-xl md:text-3xl text-center border-b-2 border-white pb-4">
+          <div className="text-2xl md:text-3xl text-center border-b-2 border-white pb-4">
             Student Interaction Corner
           </div>
           <p className="mt-6 text-justify leading-loose text-shadow">
