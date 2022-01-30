@@ -1,6 +1,6 @@
 const BackButton = (props) => {
   return (
-    <div className="mb-6 flex items-center gap-2 cursor-pointer" onClick={() => props.router.back()}>
+    <div className="mb-6 flex items-center gap-2 cursor-pointer w-max" onClick={() => props.router.back()}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="30"

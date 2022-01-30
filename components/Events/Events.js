@@ -56,7 +56,7 @@ const Events = (props) => {
       </div>
       {/* Event Cards holder*/}
       {error ? (
-         <Status>{"Some error occured :("}</Status>
+         <Status styles="border-red-500">{"Some error occured :("}</Status>
       ) : isLoading ? (
         <Loading heading="events" />
       ) : data.length > 0 ? (
@@ -86,7 +86,7 @@ const Events = (props) => {
             })}
         </div>
       ) : (
-        <Status>No events found!</Status>
+        <Status styles="border-yellow-500">No events found!</Status>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 const Status = (props) => {
   return (
-    <div className={`flex items-center justify-center py-6 m-auto ${props.styles}`}>
+    <div className={`flex items-center justify-center p-4 m-auto border-2 ${props.styles}`}>
       {props.children}
     </div>
   );

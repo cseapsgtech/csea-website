@@ -74,7 +74,7 @@ const UpcomingEventsAndGallery = () => {
       >
         <TitleWithLine title="Upcoming events" />
         {upcomingEventsError ? (
-          <Status styles="w-full md:w-72 px-8">
+          <Status styles="w-full md:w-72 px-8 border-red-500">
             {"Some error occured :("}
           </Status>
         ) : upcomingEventsLoading ? (
@@ -103,7 +103,7 @@ const UpcomingEventsAndGallery = () => {
               })}
           </div>
         ) : (
-          <Status styles="w-full md:w-72 px-8">No upcoming events!</Status>
+          <Status styles="w-full md:w-72 px-8 border-yellow-500">No upcoming events!</Status>
         )}
       </Glasscard>
 
