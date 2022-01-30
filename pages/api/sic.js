@@ -1,14 +1,22 @@
 import { firebase } from "../../firebase/clientApp";
 
-export default function handler(req, res) {
-  const eventsRef = firebase.firestore().collection("sic");
+export const getProbStatements = async () => {
+  const sicRef = firebase.firestore().collection("sic");
 
-  eventsRef.get().then(
-    (snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      res.status(200).json(data);
-    });
+  let data;
+
+  await sicRef.get().then((snapshot) => {
+    data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  });
+
+  return data;
+};
+
+export default function handler(req, res) {
+  getProbStatements().then((data) => {
+    res.status(200).json(data);
+  });
 }

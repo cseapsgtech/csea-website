@@ -5,9 +5,9 @@ import TeamCard from "../components/Team/TeamCard";
 import BackButton from "../components/BackButton";
 import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
+import { getTeamMembers } from "./api/teams";
 
 const Teams = () => {
-
   const router = useRouter();
 
   const { data } = useQuery(
@@ -60,23 +60,24 @@ const Teams = () => {
 };
 
 export const getServerSideProps = async (context) => {
-  let httpProtocol;
+  // let httpProtocol;
 
-  if (context.req.headers.host.includes("localhost")) {
-    httpProtocol = "http";
-  } else {
-    httpProtocol = "https";
-  }
+  // if (context.req.headers.host.includes("localhost")) {
+  //   httpProtocol = "http";
+  // } else {
+  //   httpProtocol = "https";
+  // }
 
-  // context.req.headers.host provides the host name
-  let host = context.req.headers.host;
+  // // context.req.headers.host provides the host name
+  // let host = context.req.headers.host;
 
   // code for prefetching data from server using react-query
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery("teams", async () => {
-    const response = await fetch(`${httpProtocol}://${host}/api/teams`);
-    const jsonresponse = await response.json();
+    //const response = await fetch(`${httpProtocol}://${host}/api/teams`);
+    const jsonresponse = await getTeamMembers();
+    //const jsonresponse = await response.json();
     return jsonresponse;
   });
 

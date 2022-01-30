@@ -8,6 +8,8 @@ import LinkButton from "../../../components/LinkButton";
 import Status from "../../../components/Status";
 import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
+import { getCompletedEvents } from "../../api/events/year/[year]/completed";
+import { getUpcomingEvents } from "../../api/events/year/[year]/upcoming";
 
 const Events = () => {
   const router = useRouter();
@@ -134,34 +136,37 @@ const Events = () => {
 export const getServerSideProps = async (context) => {
   let year = context.params.year;
 
-  let httpProtocol;
+  // let httpProtocol;
 
-  if (context.req.headers.host.includes("localhost")) {
-    httpProtocol = "http";
-  } else {
-    httpProtocol = "https";
-  }
+  // if (context.req.headers.host.includes("localhost")) {
+  //   httpProtocol = "http";
+  // } else {
+  //   httpProtocol = "https";
+  // }
 
-  // context.req.headers.host provides the host name
-  let host = context.req.headers.host;
+  // // context.req.headers.host provides the host name
+  // let host = context.req.headers.host;
 
   // code for prefetching data from server using react-query
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(["all-events", year], async () => {
     // fetching all completed events
-    const completedEvents = await fetch(
-      `${httpProtocol}://${host}/api/events/year/${year}/completed`
-    );
+    // const completedEvents = await fetch(
+    //   `${httpProtocol}://${host}/api/events/year/${year}/completed`
+    // );
 
-    const completedEventsJson = await completedEvents.json();
+    const completedEventsJson = await getCompletedEvents(year);
+
+    //const completedEventsJson = await completedEvents.json();
 
     // fetching all upcoming events
-    const upcomingEvents = await fetch(
-      `${httpProtocol}://${host}/api/events/year/${year}/upcoming`
-    );
+    // const upcomingEvents = await fetch(
+    //   `${httpProtocol}://${host}/api/events/year/${year}/upcoming`
+    // );
+    const upcomingEventsJson = await getUpcomingEvents(year);
 
-    const upcomingEventsJson = await upcomingEvents.json();
+    //const upcomingEventsJson = await upcomingEvents.json();
 
     const allEvents = {
       completedEvents: completedEventsJson,

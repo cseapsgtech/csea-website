@@ -5,6 +5,7 @@ import BackButton from "../components/BackButton.js";
 import { useRouter } from "next/router";
 import ProblemStatementCard from "../components/SIC page/ProblemStatementCard.js";
 import { dehydrate, QueryClient, useQuery } from "react-query";
+import { getProbStatements } from "./api/sic.js";
 
 const SIC = () => {
 
@@ -93,23 +94,24 @@ const SIC = () => {
 };
 
 export const getServerSideProps = async (context) => {
-  let httpProtocol;
+  // let httpProtocol;
 
-  if (context.req.headers.host.includes("localhost")) {
-    httpProtocol = "http";
-  } else {
-    httpProtocol = "https";
-  }
+  // if (context.req.headers.host.includes("localhost")) {
+  //   httpProtocol = "http";
+  // } else {
+  //   httpProtocol = "https";
+  // }
 
-  // context.req.headers.host provides the host name
-  let host = context.req.headers.host;
+  // // context.req.headers.host provides the host name
+  // let host = context.req.headers.host;
 
   // code for prefetching data from server using react-query
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery("sic", async () => {
-    const response = await fetch(`${httpProtocol}://${host}/api/sic`);
-    const jsonresponse = await response.json();
+    //const response = await fetch(`${httpProtocol}://${host}/api/sic`);
+    const jsonresponse = await getProbStatements();
+    //const jsonresponse = await response.json();
     return jsonresponse;
   });
 

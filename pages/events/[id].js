@@ -9,6 +9,7 @@ import TitleWithLine from "../../components/TitleWithLine";
 import BackButton from "../../components/BackButton";
 import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
+import { getEventById } from "../api/events/[id]";
 
 const Events = () => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const Events = () => {
     ["events", id],
     async () => {
       const response = await fetch(
-        `${httpProtocol}://${host}/api/events/${id}`
+        `/api/events/${id}`
       );
       const jsonresponse = await response.json();
       return jsonresponse;
@@ -122,23 +123,24 @@ const Events = () => {
 export const getServerSideProps = async (context) => {
   const id = context.params?.id;
 
-  let httpProtocol;
+  // let httpProtocol;
 
-  if (context.req.headers.host.includes("localhost")) {
-    httpProtocol = "http";
-  } else {
-    httpProtocol = "https";
-  }
+  // if (context.req.headers.host.includes("localhost")) {
+  //   httpProtocol = "http";
+  // } else {
+  //   httpProtocol = "https";
+  // }
 
-  // context.req.headers.host provides the host name
-  let host = context.req.headers.host;
+  // // context.req.headers.host provides the host name
+  // let host = context.req.headers.host;
 
   // code for prefetching data from server using react-query
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(["events", id], async () => {
-    const response = await fetch(`${httpProtocol}://${host}/api/events/${id}`);
-    const jsonresponse = await response.json();
+    //const response = await fetch(`${httpProtocol}://${host}/api/events/${id}`);
+    const jsonresponse = await getEventById(id);
+    //const jsonresponse = await response.json();
     return jsonresponse;
   });
 
