@@ -5,6 +5,7 @@ import UpcomingEventsAndGallery from "../components/UpcomingEventsAndGallery/Upc
 import Events from "../components/Events/Events"
 import SIC from "../components/SIC/SIC"
 // import News from "../components/News/News"
+import Magazine from "../components/Magazine/Magazine"
 import HODDesk from "../components/HODDesk/HODDesk"
 import Team from "../components/Team/Team"
 import Footer from "../components/Footer/Footer"
@@ -22,6 +23,7 @@ export default function Home() {
       <Events />
       <SIC />
       <HODDesk />
+      <Magazine />
       {/* <News /> */}
       <Team />
       <Footer />

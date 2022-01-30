@@ -2,6 +2,7 @@ import EventCard from "./EventCard";
 import GlassTitleHolder from "../GlassTitleHolder";
 import LinkButton from "../LinkButton";
 import Loading from "../Loading";
+import Status from "../Status";
 import { useQuery } from "react-query";
 
 const Events = (props) => {
@@ -17,7 +18,9 @@ const Events = (props) => {
   const { isLoading, error, data } = useQuery(
     "events",
     async () => {
-      const response = await fetch("/api/events");
+      const response = await fetch(
+        `/api/events/year/${new Date().getFullYear()}/completed`
+      );
       const jsonresponse = await response.json();
       return jsonresponse;
     },
@@ -37,7 +40,7 @@ const Events = (props) => {
       <div className="flex flex-col gap-3">
         <GlassTitleHolder title="E V E N T S" titleType="events" />
         <LinkButton
-          href="/events"
+          href={`/events/year/${new Date().getFullYear()}`}
           styles="px-4 py-2 bg-white w-full"
           customCSS={customStyleForViewAllEventsButton}
         >
@@ -52,9 +55,11 @@ const Events = (props) => {
         </LinkButton>
       </div>
       {/* Event Cards holder*/}
-      {isLoading ? (
+      {error ? (
+         <Status>{"Some error occured :("}</Status>
+      ) : isLoading ? (
         <Loading heading="events" />
-      ) : (
+      ) : data.length > 0 ? (
         <div className="flex flex-col md:flex-row overflow-x-auto overflow-y-hidden gap-6 md:pb-4">
           {data
             .sort((a, b) => {
@@ -80,6 +85,8 @@ const Events = (props) => {
               );
             })}
         </div>
+      ) : (
+        <Status>No events found!</Status>
       )}
     </div>
   );

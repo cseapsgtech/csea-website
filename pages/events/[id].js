@@ -6,6 +6,7 @@ import CalendarIconAndDate from "../../components/CalendarIconAndDate";
 import LinkButton from "../../components/LinkButton";
 import ForList from "../../components/SIC page/ForList";
 import TitleWithLine from "../../components/TitleWithLine";
+import BackButton from "../../components/BackButton";
 import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
@@ -47,6 +48,7 @@ const Events = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <TopBar />
+      <BackButton router={router} />
       <Glasscard styles="flex-1 w-full mb-6">
         <div className="flex flex-col items-center justify-center h-full p-4">
           <div className="text-2xl md:text-3xl text-center">{event.name}</div>
@@ -85,8 +87,8 @@ const Events = () => {
                 <p key={index} className="flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
+                    width="22"
+                    height="22"
                     fill="white"
                     className="bi bi-person-fill"
                     viewBox="0 0 18 18"

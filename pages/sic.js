@@ -1,10 +1,15 @@
 import Head from "next/head";
 import Glasscard from "../components/Glasscard.js";
 import TopBar from "../components/TopBar.js";
+import BackButton from "../components/BackButton.js";
+import { useRouter } from "next/router";
 import ProblemStatementCard from "../components/SIC page/ProblemStatementCard.js";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
 const SIC = () => {
+
+  const router = useRouter();
+  
   const { data: probStatements } = useQuery(
     "sic",
     async () => {
@@ -37,6 +42,7 @@ const SIC = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <TopBar />
+      <BackButton router={router} />
       <Glasscard styles="flex-1 w-full mb-6">
         <div className="flex flex-col items-center justify-center h-full p-4">
           <div className="text-2xl md:text-3xl text-center border-b-2 border-white pb-4">

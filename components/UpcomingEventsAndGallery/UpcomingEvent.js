@@ -6,7 +6,7 @@ const UpcomingEvent = (props) => {
   return (
     <div className="flex-col py-0 flex xsm:flex-row">
       {/* Image holder */}
-      <div className="mb-4 xsm:block bg-gray-300 rounded-md w-full xsm:h-28 xsm:w-28 overflow-hidden">
+      <div className="mb-4 xsm:block bg-gray-300 rounded-md w-full xsm:mb-0 xsm:h-28 xsm:w-28 overflow-hidden">
         {props.imageSrc && (
           <Image
             src={props.imageSrc}

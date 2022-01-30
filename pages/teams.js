@@ -2,9 +2,14 @@ import TopBar from "../components/TopBar";
 import Head from "next/head";
 import Glasscard from "../components/Glasscard";
 import TeamCard from "../components/Team/TeamCard";
+import BackButton from "../components/BackButton";
+import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
 const Teams = () => {
+
+  const router = useRouter();
+
   const { data } = useQuery(
     "teams",
     async () => {
@@ -26,6 +31,7 @@ const Teams = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <TopBar />
+      <BackButton router={router} />
       <Glasscard styles="flex-1 w-full mb-6">
         <div className="flex flex-col items-center justify-center h-full p-4">
           <div className="text-2xl md:text-3xl text-center">Our Team</div>
