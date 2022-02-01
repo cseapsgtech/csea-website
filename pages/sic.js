@@ -4,26 +4,26 @@ import TopBar from "../components/TopBar.js";
 import BackButton from "../components/BackButton.js";
 import { useRouter } from "next/router";
 import ProblemStatementCard from "../components/SIC page/ProblemStatementCard.js";
-import { dehydrate, QueryClient, useQuery } from "react-query";
+// import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getProbStatements } from "./api/sic.js";
 
-const SIC = () => {
+const SIC = ({ probStatements }) => {
 
   const router = useRouter();
   
-  const { data: probStatements } = useQuery(
-    "sic",
-    async () => {
-      const response = await fetch("/api/sic");
-      const jsonresponse = await response.json();
-      return jsonresponse;
-    },
-    {
-      keepPreviousData: true,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // const { data: probStatements } = useQuery(
+  //   "sic",
+  //   async () => {
+  //     const response = await fetch("/api/sic");
+  //     const jsonresponse = await response.json();
+  //     return jsonresponse;
+  //   },
+  //   {
+  //     keepPreviousData: true,
+  //     refetchOnMount: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
   const getDate = (seconds) => {
     const date = new Date(seconds * 1000); // conversion from seconds to date
@@ -93,50 +93,18 @@ const SIC = () => {
   );
 };
 
-export const getServerSideProps = async (context) => {
-  // let httpProtocol;
 
-  // if (context.req.headers.host.includes("localhost")) {
-  //   httpProtocol = "http";
-  // } else {
-  //   httpProtocol = "https";
-  // }
-
-  // // context.req.headers.host provides the host name
-  // let host = context.req.headers.host;
-
-  // code for prefetching data from server using react-query
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery("sic", async () => {
-    //const response = await fetch(`${httpProtocol}://${host}/api/sic`);
-    const jsonresponse = await getProbStatements();
-    //const jsonresponse = await response.json();
-    return jsonresponse;
-  });
+// Incremental static regeneration
+export const getStaticProps = async () => {
+  
+  const probStatements = await getProbStatements();
 
   return {
     props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      probStatements: JSON.parse(JSON.stringify(probStatements)),
     },
+    revalidate: 120
   };
-
-  // // alternative code
-  // const res = await fetch(`${httpProtocol}://${host}/api/sic`);
-  // const probStatements = await res.json();
-
-  // if (!probStatements) {
-  //   return {
-  //     // The notFound boolean allows the page to return a 404 status and 404 Page
-  //     notFound: true,
-  //   };
-  // }
-
-  // return {
-  //   props: {
-  //     probStatements,
-  //   },
-  // };
 };
 
 export default SIC;

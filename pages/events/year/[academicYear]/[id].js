@@ -1,26 +1,24 @@
-import TopBar from "../../components/TopBar";
+import TopBar from "../../../../components/TopBar";
 import Head from "next/head";
-import Glasscard from "../../components/Glasscard";
+import Glasscard from "../../../../components/Glasscard";
 import Image from "next/image";
-import CalendarIconAndDate from "../../components/CalendarIconAndDate";
-import LinkButton from "../../components/LinkButton";
-import ForList from "../../components/SIC page/ForList";
-import TitleWithLine from "../../components/TitleWithLine";
-import BackButton from "../../components/BackButton";
+import CalendarIconAndDate from "../../../../components/CalendarIconAndDate";
+import LinkButton from "../../../../components/LinkButton";
+import ForList from "../../../../components/SIC page/ForList";
+import TitleWithLine from "../../../../components/TitleWithLine";
+import BackButton from "../../../../components/BackButton";
 import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
-import { getEventById } from "../api/events/[id]";
+import { getEventById } from "../../../api/events/year/[academicYear]/[id]";
 
 const Events = () => {
   const router = useRouter();
   const { id } = router.query;
 
   const { data: event } = useQuery(
-    ["events", id],
+    ["event", id],
     async () => {
-      const response = await fetch(
-        `/api/events/${id}`
-      );
+      const response = await fetch(`/api/events/${id}`);
       const jsonresponse = await response.json();
       return jsonresponse;
     },
@@ -43,7 +41,7 @@ const Events = () => {
   };
 
   return (
-    <>
+    <div>
       <Head>
         <title>{`${event.name} - Event details`}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -83,23 +81,23 @@ const Events = () => {
           <div className="my-10 flex flex-col gap-2">
             <TitleWithLine title="Convenors" styles="font-semibold" />
             <div className="flex flex-col gap-4">
-            {event.convenors.map((convenor, index) => {
-              return (
-                <p key={index} className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    fill="white"
-                    className="bi bi-person-fill"
-                    viewBox="0 0 18 18"
-                  >
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                  </svg>
-                  {convenor}
-                </p>
-              );
-            })}
+              {event.convenors.map((convenor, index) => {
+                return (
+                  <p key={index} className="flex items-center gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                      fill="white"
+                      className="bi bi-person-fill"
+                      viewBox="0 0 18 18"
+                    >
+                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    </svg>
+                    {convenor}
+                  </p>
+                );
+              })}
             </div>
           </div>
           {/* Date */}
@@ -116,32 +114,21 @@ const Events = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
+// Here server side rendering is used because for each ID, the specific event associated with that ID is shown
 export const getServerSideProps = async (context) => {
-  const id = context.params?.id;
-
-  // let httpProtocol;
-
-  // if (context.req.headers.host.includes("localhost")) {
-  //   httpProtocol = "http";
-  // } else {
-  //   httpProtocol = "https";
-  // }
-
-  // // context.req.headers.host provides the host name
-  // let host = context.req.headers.host;
+  const { academicYear, id } = context.params;
 
   // code for prefetching data from server using react-query
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["events", id], async () => {
-    //const response = await fetch(`${httpProtocol}://${host}/api/events/${id}`);
-    const jsonresponse = await getEventById(id);
-    //const jsonresponse = await response.json();
-    return jsonresponse;
+  await queryClient.prefetchQuery(["event", id], async () => {
+    const response = await getEventById(id, academicYear);
+
+    return response;
   });
 
   return {

@@ -1,30 +1,34 @@
-import TopBar from "../../../components/TopBar";
+import TopBar from "../../../../components/TopBar";
 import Head from "next/head";
-import Glasscard from "../../../components/Glasscard";
-import EventCard from "../../../components/Events/EventCard";
-import TitleWithLine from "../../../components/TitleWithLine";
-import BackButton from "../../../components/BackButton";
-import LinkButton from "../../../components/LinkButton";
-import Status from "../../../components/Status";
+import Glasscard from "../../../../components/Glasscard";
+import EventCard from "../../../../components/Events/EventCard";
+import TitleWithLine from "../../../../components/TitleWithLine";
+import BackButton from "../../../../components/BackButton";
+import LinkButton from "../../../../components/LinkButton";
+import Status from "../../../../components/Status";
 import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
-import { getCompletedEvents } from "../../api/events/year/[year]/completed";
-import { getUpcomingEvents } from "../../api/events/year/[year]/upcoming";
+import { getCompletedEvents } from "../../../api/events/year/[academicYear]/completed";
+import { getUpcomingEvents } from "../../../api/events/year/[academicYear]/upcoming";
 
 const Events = () => {
   const router = useRouter();
-  const { year } = router.query;
+  const { academicYear } = router.query;
 
   const { data } = useQuery(
-    ["all-events", year],
+    ["all-events", academicYear],
     async () => {
       // fetching all completed events
-      const completedEvents = await fetch(`/api/events/year/${year}/completed`);
+      const completedEvents = await fetch(
+        `/api/events/year/${academicYear}/completed`
+      );
 
       const completedEventsJson = await completedEvents.json();
 
       // fetching all upcoming events
-      const upcomingEvents = await fetch(`/api/events/year/${year}/upcoming`);
+      const upcomingEvents = await fetch(
+        `/api/events/year/${academicYear}/upcoming`
+      );
 
       const upcomingEventsJson = await upcomingEvents.json();
 
@@ -32,6 +36,7 @@ const Events = () => {
         completedEvents: completedEventsJson,
         upcomingEvents: upcomingEventsJson,
       };
+      
       return allEvents;
     },
     {
@@ -49,14 +54,14 @@ const Events = () => {
   return (
     <div>
       <Head>
-        <title>{`${year} Events - CSEA`}</title>
+        <title>{`${academicYear} Events - CSEA`}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <TopBar />
       <BackButton router={router} />
       <Glasscard styles="flex-1 w-full mb-6">
         <div className="flex flex-col items-center justify-center h-full p-4">
-          <div className="text-2xl md:text-3xl text-center">{`${year} Events`}</div>
+          <div className="text-2xl md:text-3xl text-center">{`${academicYear} Events`}</div>
         </div>
       </Glasscard>
 
@@ -82,7 +87,7 @@ const Events = () => {
                   content={event.desc}
                   imageSrc={event.poster_link}
                   forList={event.participants}
-                  href={`/events/${event.id}`}
+                  href={`/events/year/${academicYear}/${event.id}`}
                 />
               );
             })}
@@ -112,7 +117,7 @@ const Events = () => {
                   content={event.desc}
                   imageSrc={event.poster_link}
                   forList={event.participants}
-                  href={`/events/${event.id}`}
+                  href={`/events/year/${academicYear}/${event.id}`}
                 />
               );
             })}
@@ -133,45 +138,22 @@ const Events = () => {
   );
 };
 
+// Here server side rendering is used because for each academic year, different events are shown
 export const getServerSideProps = async (context) => {
-  let year = context.params.year;
-
-  // let httpProtocol;
-
-  // if (context.req.headers.host.includes("localhost")) {
-  //   httpProtocol = "http";
-  // } else {
-  //   httpProtocol = "https";
-  // }
-
-  // // context.req.headers.host provides the host name
-  // let host = context.req.headers.host;
+  let academicYear = context.params.academicYear;
 
   // code for prefetching data from server using react-query
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["all-events", year], async () => {
-    // fetching all completed events
-    // const completedEvents = await fetch(
-    //   `${httpProtocol}://${host}/api/events/year/${year}/completed`
-    // );
-
-    const completedEventsJson = await getCompletedEvents(year);
-
-    //const completedEventsJson = await completedEvents.json();
-
-    // fetching all upcoming events
-    // const upcomingEvents = await fetch(
-    //   `${httpProtocol}://${host}/api/events/year/${year}/upcoming`
-    // );
-    const upcomingEventsJson = await getUpcomingEvents(year);
-
-    //const upcomingEventsJson = await upcomingEvents.json();
+  await queryClient.prefetchQuery(["all-events", academicYear], async () => {
+    const completedEvents = await getCompletedEvents(academicYear);
+    const upcomingEvents = await getUpcomingEvents(academicYear);
 
     const allEvents = {
-      completedEvents: completedEventsJson,
-      upcomingEvents: upcomingEventsJson,
+      completedEvents,
+      upcomingEvents
     };
+    
     return allEvents;
   });
 
@@ -180,23 +162,6 @@ export const getServerSideProps = async (context) => {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };
-
-  // // alternative code
-  // const res = await fetch(`${httpProtocol}://${host}/api/events`);
-  // const events = await res.json();
-
-  // if (!events) {
-  //   return {
-  //     // The notFound boolean allows the page to return a 404 status and 404 Page
-  //     notFound: true,
-  //   };
-  // }
-
-  // return {
-  //   props: {
-  //     events,
-  //   },
-  // };
 };
 
 export default Events;

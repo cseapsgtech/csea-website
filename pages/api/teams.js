@@ -1,18 +1,12 @@
 import { firebase } from "../../firebase/clientApp";
 
 export const getTeamMembers = async () => {
-  const teamsRef = firebase.firestore().collection("teams");
+  const snapshot = await firebase.firestore().collection("teams").get();
 
-  let data;
-
-  await teamsRef.get().then((snapshot) => {
-    data = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-  });
-
-  return data;
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
 };
 
 export default function handler(req, res) {

@@ -2,30 +2,34 @@ import TitleWithLine from "../TitleWithLine";
 import LinkButton from "../LinkButton";
 import TeamCard from "./TeamCard";
 import Loading from "../Loading";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 
-const Team = () => {
+const Team = ({ teamMembers }) => {
   let customStyleForShowAllMembersButton = {
     color: "#27C2C7",
   };
 
-  const { isLoading, error, data } = useQuery(
-    "teams",
-    async () => {
-      const response = await fetch("/api/teams");
-      const jsonresponse = await response.json();
-      return jsonresponse;
-    },
-    {
-      keepPreviousData: true,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // const { isLoading, error, data: teamMembers } = useQuery(
+  //   "teams",
+  //   async () => {
+  //     const response = await fetch("/api/teams");
+  //     const jsonresponse = await response.json();
+  //     return jsonresponse;
+  //   },
+  //   {
+  //     keepPreviousData: true,
+  //     refetchOnMount: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
-  if (error) {
-    console.error(error.message);
-  }
+  // if (error) {
+  //   console.error(error.message);
+  // }
+
+  // NEW CODE
+  let isLoading = false
+  let error = false
 
   return (
     <div>
@@ -34,7 +38,7 @@ const Team = () => {
         <Loading heading="team members" />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-stretch">
-          {data
+          {teamMembers
             .sort((a, b) => a.index - b.index)
             .slice(0, 6)
             .map((member) => {

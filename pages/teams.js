@@ -4,25 +4,25 @@ import Glasscard from "../components/Glasscard";
 import TeamCard from "../components/Team/TeamCard";
 import BackButton from "../components/BackButton";
 import { useRouter } from "next/router";
-import { dehydrate, QueryClient, useQuery } from "react-query";
+// import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getTeamMembers } from "./api/teams";
 
-const Teams = () => {
+const Teams = ({ teamMembers }) => {
   const router = useRouter();
 
-  const { data } = useQuery(
-    "teams",
-    async () => {
-      const response = await fetch("/api/teams");
-      const jsonresponse = await response.json();
-      return jsonresponse;
-    },
-    {
-      keepPreviousData: true,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // const { data } = useQuery(
+  //   "teams",
+  //   async () => {
+  //     const response = await fetch("/api/teams");
+  //     const jsonresponse = await response.json();
+  //     return jsonresponse;
+  //   },
+  //   {
+  //     keepPreviousData: true,
+  //     refetchOnMount: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
   return (
     <div>
@@ -39,7 +39,7 @@ const Teams = () => {
       </Glasscard>
       {/* Displaying all team members */}
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 mb-6">
-        {data
+        {teamMembers
           .sort((a, b) => a.index - b.index)
           .map((member, index) => {
             return (
@@ -59,51 +59,16 @@ const Teams = () => {
   );
 };
 
-export const getServerSideProps = async (context) => {
-  // let httpProtocol;
-
-  // if (context.req.headers.host.includes("localhost")) {
-  //   httpProtocol = "http";
-  // } else {
-  //   httpProtocol = "https";
-  // }
-
-  // // context.req.headers.host provides the host name
-  // let host = context.req.headers.host;
-
-  // code for prefetching data from server using react-query
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery("teams", async () => {
-    //const response = await fetch(`${httpProtocol}://${host}/api/teams`);
-    const jsonresponse = await getTeamMembers();
-    //const jsonresponse = await response.json();
-    return jsonresponse;
-  });
+// Incremental static regeneration
+export const getStaticProps = async () => {
+  const teamMembers = await getTeamMembers();
 
   return {
     props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      teamMembers: JSON.parse(JSON.stringify(teamMembers)),
     },
+    revalidate: 120,
   };
-
-  // // alternative code
-
-  // const res = await fetch(`${httpProtocol}://${host}/api/teams`);
-  // const teamMembers = await res.json();
-
-  // if (!teamMembers) {
-  //   return {
-  //     // The notFound boolean allows the page to return a 404 status and 404 Page
-  //     notFound: true,
-  //   };
-  // }
-
-  // return {
-  //   props: {
-  //     teamMembers,
-  //   },
-  // };
 };
 
 export default Teams;

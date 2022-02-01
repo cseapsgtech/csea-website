@@ -1,18 +1,12 @@
 import { firebase } from "../../firebase/clientApp";
 
 export const getProbStatements = async () => {
-  const sicRef = firebase.firestore().collection("sic");
+  const snapshot = await firebase.firestore().collection("sic").get();
 
-  let data;
-
-  await sicRef.get().then((snapshot) => {
-    data = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-  });
-
-  return data;
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
 };
 
 export default function handler(req, res) {

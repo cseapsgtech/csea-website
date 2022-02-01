@@ -4,12 +4,11 @@ import TopBar from "../../components/TopBar";
 import BackButton from "../../components/BackButton";
 import Glasscard from "../../components/Glasscard";
 import LinkButton from "../../components/LinkButton";
+// import { useQuery } from "react-query";
+import { getArchives } from "../api/events/archives";
 
-const Events = () => {
+const Archives = ({ archives }) => {
   const router = useRouter();
-  const currentYear = new Date().getFullYear();
-
-  const prevTwoYears = [currentYear - 1, currentYear - 2];
 
   return (
     <div>
@@ -26,20 +25,32 @@ const Events = () => {
       </Glasscard>
       {/* Mapping prev years to specific links */}
       <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6">
-      {prevTwoYears.map((year, index) => {
-        return (
-          <LinkButton
-            key={index}
-            href={`/events/year/${year}`}
-            styles="border-2 border-white w-full p-10 text-lg hover:border-green-500"
-          >
-            {year} Events
-          </LinkButton>
-        );
-      })}
+        {archives.map((year, index) => {
+          return (
+            <LinkButton
+              key={index}
+              href={`/events/year/${year}`}
+              styles="border-2 border-white w-full p-10 text-lg hover:border-green-500"
+            >
+              {year} Events
+            </LinkButton>
+          );
+        })}
       </div>
     </div>
   );
 };
 
-export default Events;
+// Incremental static regeneration
+export const getStaticProps = async () => {
+  const archives = await getArchives();
+
+  return {
+    props: {
+      archives,
+    },
+    revalidate: 120,
+  };
+};
+
+export default Archives;

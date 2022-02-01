@@ -3,9 +3,9 @@ import GlassTitleHolder from "../GlassTitleHolder";
 import LinkButton from "../LinkButton";
 import Loading from "../Loading";
 import Status from "../Status";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 
-const Events = (props) => {
+const Events = ({ events, currentAcademicYear }) => {
   let customStyleForViewAllEventsButton = {
     color: "#27C2C7",
   };
@@ -15,32 +15,36 @@ const Events = (props) => {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
-  const { isLoading, error, data } = useQuery(
-    "events",
-    async () => {
-      const response = await fetch(
-        `/api/events/year/${new Date().getFullYear()}/completed`
-      );
-      const jsonresponse = await response.json();
-      return jsonresponse;
-    },
-    {
-      keepPreviousData: true,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // const { isLoading, error, data: events } = useQuery(
+  //   "events",
+  //   async () => {
+  //     const response = await fetch(
+  //       `/api/events/year/${currentAcademicYear}/completed`
+  //     );
+  //     const jsonresponse = await response.json();
+  //     return jsonresponse;
+  //   },
+  //   {
+  //     keepPreviousData: true,
+  //     refetchOnMount: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
-  if (error) {
-    console.error(error.message);
-  }
+  // if (error) {
+  //   console.error(error.message);
+  // }
+
+  // NEW CODE
+  let isLoading = false
+  let error = false
 
   return (
     <div className="flex flex-col mb-6 md:flex-row gap-6">
       <div className="flex flex-col gap-3">
         <GlassTitleHolder title="E V E N T S" titleType="events" />
         <LinkButton
-          href={`/events/year/${new Date().getFullYear()}`}
+          href={`/events/year/${currentAcademicYear}`}
           styles="px-4 py-2 bg-white w-full"
           customCSS={customStyleForViewAllEventsButton}
         >
@@ -59,9 +63,9 @@ const Events = (props) => {
          <Status styles="border-red-500">{"Some error occured :("}</Status>
       ) : isLoading ? (
         <Loading heading="events" />
-      ) : data.length > 0 ? (
+      ) : events.length > 0 ? (
         <div className="flex flex-col md:flex-row overflow-x-auto overflow-y-hidden gap-6 md:pb-4">
-          {data
+          {events
             .sort((a, b) => {
               // Turn seconds into dates, and then subtract them
               // to get a value that is either negative, positive, or zero.
@@ -80,7 +84,7 @@ const Events = (props) => {
                   content={event.desc}
                   imageSrc={event.poster_link}
                   forList={event.participants}
-                  href={`/events/${event.id}`}
+                  href={`/events/year/${currentAcademicYear}/${event.id}`}
                 />
               );
             })}

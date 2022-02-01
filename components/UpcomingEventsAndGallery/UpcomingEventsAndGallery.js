@@ -4,59 +4,60 @@ import TitleWithLine from "../TitleWithLine";
 import GalleryContainer from "./GalleryContainer";
 import Loading from "../Loading";
 import Status from "../Status";
-import { useQuery } from "react-query";
-import { storage } from "../../firebase/clientApp";
+// import { useQuery } from "react-query";
 
-const UpcomingEventsAndGallery = () => {
-  const {
-    isLoading: galleryLoading,
-    data: images,
-    error: galleryError,
-  } = useQuery(
-    "gallery",
-    async () => {
-      const result = await storage.ref("gallery/").listAll();
+const UpcomingEventsAndGallery = ({ upcomingEvents, gallery, currentAcademicYear }) => {
+  // const {
+  //   isLoading: galleryLoading,
+  //   data: gallery,
+  //   error: galleryError,
+  // } = useQuery(
+  //   "gallery",
+  //   async () => {
+  //     const response = await fetch(`/api/gallery`);
+  //     const jsonresponse = await response.json();
+  //     return jsonresponse;
+  //   },
+  //   {
+  //     keepPreviousData: true,
+  //     refetchOnMount: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
-      const urls = await Promise.all(
-        result.items.map(async (imageRef) => imageRef.getDownloadURL())
-      );
+  // const {
+  //   isLoading: upcomingEventsLoading,
+  //   error: upcomingEventsError,
+  //   data: upcomingEvents,
+  // } = useQuery(
+  //   "upcoming-events",
+  //   async () => {
+  //     const response = await fetch(
+  //       `/api/events/year/${currentAcademicYear}/upcoming`
+  //     );
+  //     const jsonresponse = await response.json();
+  //     return jsonresponse;
+  //   },
+  //   {
+  //     keepPreviousData: true,
+  //     refetchOnMount: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
-      return urls;
-    },
-    {
-      keepPreviousData: true,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // if (upcomingEventsError) {
+  //   console.error(upcomingEventsError.message);
+  // }
 
-  const {
-    isLoading: upcomingEventsLoading,
-    error: upcomingEventsError,
-    data: upcomingEvents,
-  } = useQuery(
-    "upcoming-events",
-    async () => {
-      const response = await fetch(
-        `/api/events/year/${new Date().getFullYear()}/upcoming`
-      );
-      const jsonresponse = await response.json();
-      return jsonresponse;
-    },
-    {
-      keepPreviousData: true,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // if (galleryError) {
+  //   console.error(galleryError.message);
+  // }
 
-  if (upcomingEventsError) {
-    console.error(upcomingEventsError.message);
-  }
-
-  if (galleryError) {
-    console.error(galleryError.message);
-  }
+  // NEW CODE
+  let upcomingEventsLoading = false
+  let upcomingEventsError = false
+  let galleryLoading = false
+  let galleryError = false
 
   const getDate = (seconds) => {
     const date = new Date(seconds * 1000); // conversion from seconds to date
@@ -66,10 +67,12 @@ const UpcomingEventsAndGallery = () => {
   return (
     <div className="flex flex-col gap-6 mb-6 md:flex-row w-full">
       {/*Upcoming events*/}
-
       <Glasscard
         styles={`w-full md:w-max ${
-          (upcomingEventsLoading || upcomingEventsError || (!upcomingEventsLoading && upcomingEvents.length === 0)) && "h-3/6"
+          (upcomingEventsLoading ||
+            upcomingEventsError ||
+            (!upcomingEventsLoading && upcomingEvents.length === 0)) &&
+          "h-3/6"
         }`}
       >
         <TitleWithLine title="Upcoming events" />
@@ -97,20 +100,26 @@ const UpcomingEventsAndGallery = () => {
                     title={uc.name}
                     date={getDate(uc.date.seconds)}
                     imageSrc={uc.poster_link}
-                    href={`/events/${uc.id}`}
+                    href={`/events/year/${currentAcademicYear}/${uc.id}`}
                   />
                 );
               })}
           </div>
         ) : (
-          <Status styles="w-full md:w-72 px-8 border-yellow-500">No upcoming events!</Status>
+          <Status styles="w-full md:w-72 px-8 border-yellow-500">
+            No upcoming events!
+          </Status>
         )}
       </Glasscard>
 
       {/*Gallery*/}
       <Glasscard styles="w-full">
         <TitleWithLine title="Gallery" />
-        {galleryLoading ? (
+        {galleryError ? (
+          <Status styles="w-full md:w-72 px-8 border-red-500">
+            {"Some error occured :("}
+          </Status>
+        ) : galleryLoading ? (
           <Loading heading="gallery" />
         ) : (
           <div
@@ -119,7 +128,7 @@ const UpcomingEventsAndGallery = () => {
               gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
             }}
           >
-            {images.map((imageLink, index) => {
+            {gallery.map((imageLink, index) => {
               return <GalleryContainer key={index} img={imageLink} />;
             })}
           </div>
