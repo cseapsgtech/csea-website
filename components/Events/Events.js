@@ -1,9 +1,7 @@
 import EventCard from "./EventCard";
 import GlassTitleHolder from "../GlassTitleHolder";
 import LinkButton from "../LinkButton";
-import Loading from "../Loading";
 import Status from "../Status";
-// import { useQuery } from "react-query";
 
 const Events = ({ events, currentAcademicYear }) => {
   let customStyleForViewAllEventsButton = {
@@ -14,30 +12,6 @@ const Events = ({ events, currentAcademicYear }) => {
     const date = new Date(seconds * 1000); // conversion from seconds to date
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
-
-  // const { isLoading, error, data: events } = useQuery(
-  //   "events",
-  //   async () => {
-  //     const response = await fetch(
-  //       `/api/events/year/${currentAcademicYear}/completed`
-  //     );
-  //     const jsonresponse = await response.json();
-  //     return jsonresponse;
-  //   },
-  //   {
-  //     keepPreviousData: true,
-  //     refetchOnMount: false,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
-
-  // if (error) {
-  //   console.error(error.message);
-  // }
-
-  // NEW CODE
-  let isLoading = false
-  let error = false
 
   return (
     <div className="flex flex-col mb-6 md:flex-row gap-6">
@@ -59,11 +33,7 @@ const Events = ({ events, currentAcademicYear }) => {
         </LinkButton>
       </div>
       {/* Event Cards holder*/}
-      {error ? (
-         <Status styles="border-red-500">{"Some error occured :("}</Status>
-      ) : isLoading ? (
-        <Loading heading="events" />
-      ) : events.length > 0 ? (
+      {events.length > 0 ? (
         <div className="flex flex-col md:flex-row overflow-x-auto overflow-y-hidden gap-6 md:pb-4">
           {events
             .sort((a, b) => {
