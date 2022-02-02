@@ -10,8 +10,9 @@ import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getCompletedEvents } from "../../../api/events/year/[academicYear]/completed";
 import { getUpcomingEvents } from "../../../api/events/year/[academicYear]/upcoming";
+import { getCurrentAcademicYear } from "../../../api/events/year/currentAcademicYear";
 
-const Events = () => {
+const Events = ({ currentAcademicYear }) => {
   const router = useRouter();
   const { academicYear } = router.query;
 
@@ -66,36 +67,42 @@ const Events = () => {
       </Glasscard>
 
       {/* Displaying upcoming events */}
-      <TitleWithLine title="Upcoming events" styles="text-xl font-bold" />
-      {data.upcomingEvents.length > 0 ? (
-        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-start">
-          {data.upcomingEvents
-            .sort((a, b) => {
-              // Turn seconds into dates, and then subtract them
-              // to get a value that is either negative, positive, or zero.
-              return (
-                new Date(b.date.seconds * 1000) -
-                new Date(a.date.seconds * 1000)
-              );
-            })
-            .map((event) => {
-              return (
-                <EventCard
-                  width="w-full"
-                  infoHolderWidth="sm:w-min"
-                  key={event.id}
-                  title={event.name}
-                  date={getDate(event.date.seconds)}
-                  content={event.desc}
-                  imageSrc={event.poster_link}
-                  forList={event.participants}
-                  href={`/events/year/${academicYear}/${event.id}`}
-                />
-              );
-            })}
-        </div>
-      ) : (
-        <Status styles="border-yellow-500 mb-6">No upcoming events :(</Status>
+      {currentAcademicYear === academicYear && (
+        <>
+          <TitleWithLine title="Upcoming events" styles="text-xl font-bold" />
+          {data.upcomingEvents.length > 0 ? (
+            <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-start">
+              {data.upcomingEvents
+                .sort((a, b) => {
+                  // Turn seconds into dates, and then subtract them
+                  // to get a value that is either negative, positive, or zero.
+                  return (
+                    new Date(b.date.seconds * 1000) -
+                    new Date(a.date.seconds * 1000)
+                  );
+                })
+                .map((event) => {
+                  return (
+                    <EventCard
+                      width="w-full"
+                      infoHolderWidth="sm:w-min"
+                      key={event.id}
+                      title={event.name}
+                      date={getDate(event.date.seconds)}
+                      content={event.desc}
+                      imageSrc={event.poster_link}
+                      forList={event.participants}
+                      href={`/events/year/${academicYear}/${event.id}`}
+                    />
+                  );
+                })}
+            </div>
+          ) : (
+            <Status styles="border-yellow-500 mb-6">
+              No upcoming events :
+            </Status>
+          )}
+        </>
       )}
       {/* Displaying completed events */}
       <TitleWithLine title="Completed events" styles="text-xl font-bold" />
@@ -146,6 +153,9 @@ const Events = () => {
 export const getServerSideProps = async (context) => {
   let academicYear = context.params.academicYear;
 
+  // get current academic year
+  const currentAcademicYear = await getCurrentAcademicYear();
+
   // code for prefetching data from server using react-query
   const queryClient = new QueryClient();
 
@@ -163,6 +173,7 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
+      currentAcademicYear: currentAcademicYear.academic_year,
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };

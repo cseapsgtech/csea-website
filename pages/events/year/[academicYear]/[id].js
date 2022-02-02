@@ -94,7 +94,7 @@ const Events = () => {
                     >
                       <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg>
-                    <span className="textShadow">{convenor}</span>
+                    <span className="text-shadow">{convenor}</span>
                   </p>
                 );
               })}
@@ -121,16 +121,22 @@ const Events = () => {
                 Go to <span className="font-semibold">RECORDING!</span>
               </LinkButton>
             )
+          ) : !isExpired(event.date.seconds) ? (
+            <LinkButton
+              href={event.link}
+              styles="py-2 px-4 mt-4 w-max rounded-lg grad-button"
+              externalLink
+            >
+              Register for <span className="font-semibold">EVENT!</span>
+            </LinkButton>
           ) : (
-            !isExpired(event.date.seconds) && (
-              <LinkButton
-                href={event.link}
-                styles="py-2 px-4 mt-4 w-max rounded-lg grad-button"
-                externalLink
-              >
-                Register for <span className="font-semibold">EVENT!</span>
-              </LinkButton>
-            )
+            <LinkButton
+              href={event.link}
+              styles="py-2 px-4 mt-4 w-max rounded-lg grad-button"
+              externalLink
+            >
+              Check out the <span className="font-semibold">WINNERS!</span>
+            </LinkButton>
           )}
         </div>
       </div>
