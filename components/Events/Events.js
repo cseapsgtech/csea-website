@@ -48,6 +48,8 @@ const Events = ({ events, currentAcademicYear }) => {
             .map((event) => {
               return (
                 <EventCard
+                  width="sm:min-w-max"
+                  infoHolderWidth="sm:w-96"
                   key={event.id}
                   title={event.name}
                   date={getDate(event.date.seconds)}

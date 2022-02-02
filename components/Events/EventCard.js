@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const EventCard = (props) => {
   return (
-    <div className="card-border rounded-lg px-6 py-8 md:p-6 flex flex-col sm:min-w-max">
+    <div className={`card-border rounded-lg px-6 py-8 md:p-6 flex flex-col ${props.width}`}>
       <TitleWithLine title={props.title} styles="sm:w-96 uppercase text-lg md:text-base" />
       <div className="flex flex-col sm:flex-row">
         {/* Image holder */}
@@ -24,7 +24,7 @@ const EventCard = (props) => {
         </div>
         {/* Info holder */}
         <div
-          className="flex-grow pt-4 sm:pt-0 sm:w-96 sm:pl-4 line-clamp-5 sm:line-clamp-3 text-justify leading-loose antialiased text-shadow"
+          className={`${props.infoHolderWidth} flex-grow pt-4 sm:pt-0 sm:pl-4 line-clamp-5 sm:line-clamp-3 text-justify leading-loose antialiased text-shadow`}
           style={{ height: "fit-content" }}
           title={props.content}
         >

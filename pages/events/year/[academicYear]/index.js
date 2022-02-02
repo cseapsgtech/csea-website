@@ -36,7 +36,7 @@ const Events = () => {
         completedEvents: completedEventsJson,
         upcomingEvents: upcomingEventsJson,
       };
-      
+
       return allEvents;
     },
     {
@@ -68,7 +68,7 @@ const Events = () => {
       {/* Displaying upcoming events */}
       <TitleWithLine title="Upcoming events" styles="text-xl font-bold" />
       {data.upcomingEvents.length > 0 ? (
-        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-start">
           {data.upcomingEvents
             .sort((a, b) => {
               // Turn seconds into dates, and then subtract them
@@ -81,6 +81,8 @@ const Events = () => {
             .map((event) => {
               return (
                 <EventCard
+                  width="w-full"
+                  infoHolderWidth="sm:w-min"
                   key={event.id}
                   title={event.name}
                   date={getDate(event.date.seconds)}
@@ -98,7 +100,7 @@ const Events = () => {
       {/* Displaying completed events */}
       <TitleWithLine title="Completed events" styles="text-xl font-bold" />
       {data.completedEvents.length > 0 ? (
-        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-start">
           {data.completedEvents
             .sort((a, b) => {
               // Turn seconds into dates, and then subtract them
@@ -111,6 +113,8 @@ const Events = () => {
             .map((event) => {
               return (
                 <EventCard
+                  width="w-full"
+                  infoHolderWidth="sm:w-min"
                   key={event.id}
                   title={event.name}
                   date={getDate(event.date.seconds)}
@@ -151,9 +155,9 @@ export const getServerSideProps = async (context) => {
 
     const allEvents = {
       completedEvents,
-      upcomingEvents
+      upcomingEvents,
     };
-    
+
     return allEvents;
   });
 
