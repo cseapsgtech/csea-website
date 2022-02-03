@@ -30,7 +30,7 @@ const Archives = ({ archives }) => {
             <LinkButton
               key={index}
               href={`/events/year/${year}`}
-              styles="border-2 border-white w-full p-10 text-lg hover:border-green-500"
+              styles="border-2 border-white w-full p-10 text-lg hover:border-green-500 transition-all duration-300"
             >
               {year} Events
             </LinkButton>

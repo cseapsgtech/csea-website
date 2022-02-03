@@ -59,12 +59,6 @@ const SIC = ({ probStatements }) => {
             minded seniors and also get their valuable suggestions and
             experience.
           </p>
-          {/* <LinkButton
-            href="/"
-            styles="px-4 py-2 border-white border-2 rounded-lg mt-5 md:hover:bg-gray-700 text-shadow"
-          >
-            <span className="font-semibold">KNOW MORE</span> about us!
-          </LinkButton> */}
         </div>
       </Glasscard>
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 mb-6 place-items-start">

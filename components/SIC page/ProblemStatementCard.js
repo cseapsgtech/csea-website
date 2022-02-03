@@ -11,7 +11,7 @@ const ProblemStatementCard = ({
   forList
 }) => {
   return (
-    <Glasscard styles="shadow-lg hover:bg-gray-600 hover:bg-opacity-25 cursor-pointer h-fit">
+    <Glasscard styles="shadow-lg hover:bg-gray-600 hover:bg-opacity-25 cursor-pointer h-fit transition-all duration-300">
       <TitleWithLine title={`Problem Statement`} />
       <p className="text-md text-justify w-full leading-loose">{statement}</p>
       <div className="my-2">

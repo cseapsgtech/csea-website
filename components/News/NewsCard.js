@@ -5,7 +5,7 @@ import LinkButton from "../LinkButton";
 const NewsCard = (props) => {
   return (
     <div
-      className="card-border rounded-lg px-6 py-8 md:p-6 flex flex-col sm:min-w-max"
+      className="card-border rounded-lg px-6 py-8 md:p-6 flex flex-col sm:min-w-max transition-all duration-300"
     >
       <TitleWithLine title={props.title} styles="sm:w-96" />
       <div className="flex flex-col sm:flex-row justify-center">

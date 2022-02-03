@@ -11,6 +11,7 @@ const TeamCard = (props) => {
           <div className="rounded-full bg-gray-300 h-20 w-20 xsm:h-28 xsm:w-28 shadow-xl xsm:rounded-md team-member-image overflow-hidden">
             {props.imageSrc && (
               <Image
+                className="transform transition-all duration-300 hover:scale-110"
                 src={props.imageSrc}
                 width="100%"
                 height="100%"
@@ -30,7 +31,7 @@ const TeamCard = (props) => {
             <span className="font-playfair text-sm text-shadow line-clamp-1">
               {props.academicTitle}
             </span>
-            
+
             <IconsHolder
               githubLink={props.githubLink}
               linkedinLink={props.linkedinLink}

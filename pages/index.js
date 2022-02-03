@@ -14,6 +14,7 @@ import { getCompletedEvents } from "./api/events/year/[academicYear]/completed";
 import { getUpcomingEvents } from "./api/events/year/[academicYear]/upcoming";
 import { getPictureLinks } from "./api/gallery";
 import { getTeamMembers } from "./api/teams";
+import { getMagazineLinks } from "./api/magazine";
 
 export default function Home({ allData }) {
 
@@ -29,7 +30,7 @@ export default function Home({ allData }) {
       <Events events={allData.completedEvents} currentAcademicYear={allData.currentAcademicYear} />
       <SIC />
       <HODDesk />
-      <Magazine />
+      <Magazine links={allData.magazineLinks}/>
       {/* <News /> */}
       <Team teamMembers={allData.teamMembers}/>
       <Footer />
@@ -47,6 +48,7 @@ export const getStaticProps = async () => {
     currentAcademicYear.academic_year
   );
   const gallery = await getPictureLinks();
+  const magazineLinks = await getMagazineLinks();
   const teamMembers = await getTeamMembers();
 
   const allData = {
@@ -54,6 +56,7 @@ export const getStaticProps = async () => {
     completedEvents,
     upcomingEvents,
     gallery,
+    magazineLinks,
     teamMembers
   };
 

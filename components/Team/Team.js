@@ -9,53 +9,28 @@ const Team = ({ teamMembers }) => {
     color: "#27C2C7",
   };
 
-  // const { isLoading, error, data: teamMembers } = useQuery(
-  //   "teams",
-  //   async () => {
-  //     const response = await fetch("/api/teams");
-  //     const jsonresponse = await response.json();
-  //     return jsonresponse;
-  //   },
-  //   {
-  //     keepPreviousData: true,
-  //     refetchOnMount: false,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
-
-  // if (error) {
-  //   console.error(error.message);
-  // }
-
-  // NEW CODE
-  let isLoading = false
-  let error = false
-
   return (
     <div>
       <TitleWithLine title="Team" styles="text-xl font-bold" />
-      {isLoading ? (
-        <Loading heading="team members" />
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-stretch">
-          {teamMembers
-            .sort((a, b) => a.index - b.index)
-            .slice(0, 6)
-            .map((member) => {
-              return (
-                <TeamCard
-                  key={member.id}
-                  memberName={member.name}
-                  academicTitle={member.academic_title}
-                  imageSrc={member.picture_link}
-                  designation={member.designation}
-                  githubLink={member.github}
-                  linkedinLink={member.linkedin}
-                />
-              );
-            })}
-        </div>
-      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-stretch">
+        {teamMembers
+          .sort((a, b) => a.index - b.index)
+          .slice(0, 6)
+          .map((member) => {
+            return (
+              <TeamCard
+                key={member.index}
+                memberName={member.name}
+                academicTitle={member.academic_title}
+                imageSrc={member.picture_link}
+                designation={member.designation}
+                githubLink={member.github}
+                linkedinLink={member.linkedin}
+              />
+            );
+          })}
+      </div>
 
       <div className="w-max m-auto mb-6">
         <LinkButton

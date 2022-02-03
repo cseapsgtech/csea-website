@@ -41,10 +41,10 @@ const Teams = ({ teamMembers }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 mb-6">
         {teamMembers
           .sort((a, b) => a.index - b.index)
-          .map((member, index) => {
+          .map((member) => {
             return (
               <TeamCard
-                key={index}
+                key={member.index}
                 memberName={member.name}
                 academicTitle={member.academic_title}
                 imageSrc={member.picture_link}
