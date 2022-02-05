@@ -1,8 +1,8 @@
 import Glasscard from "../Glasscard";
 import UpcomingEvent from "./UpcomingEvent";
 import TitleWithLine from "../TitleWithLine";
-import GalleryContainer from "./GalleryContainer";
 import Status from "../Status";
+import Gallery from "./Gallery";
 
 const UpcomingEventsAndGallery = ({
   upcomingEvents,
@@ -52,16 +52,7 @@ const UpcomingEventsAndGallery = ({
       {/*Gallery*/}
       <Glasscard styles="w-full">
         <TitleWithLine title="Gallery" />
-        <div
-          className="grid gap-3 overflow-auto md:pr-3 mt-4 h-fill md:max-h-128"
-          style={{
-            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-          }}
-        >
-          {gallery.map((imageLink, index) => {
-            return <GalleryContainer key={index} img={imageLink} />;
-          })}
-        </div>
+        <Gallery gallery={gallery} />
       </Glasscard>
     </div>
   );
