@@ -121,14 +121,16 @@ const Events = ({ allEvents }) => {
 
 // Incremental Static Regeneration
 export const getStaticProps = async (context) => {
-  // get current academic year
+  
+  const { academicYear } = context.params;
+
   const currentAcademicYear = await getCurrentAcademicYear();
 
   const completedEvents = await getCompletedEvents(
-    currentAcademicYear.academic_year
+    academicYear
   );
   const upcomingEvents = await getUpcomingEvents(
-    currentAcademicYear.academic_year
+    academicYear
   );
 
   const allEvents = {
