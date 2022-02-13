@@ -45,10 +45,10 @@ export default class Gallery extends Component {
     });
   }
 
-  gotoImg (index) {
+  gotoImg(index) {
     this.setState({
-      currImg: index
-    })
+      currImg: index,
+    });
   }
 
   render() {
@@ -56,7 +56,7 @@ export default class Gallery extends Component {
       return {
         src: imageLink,
         thumbnail: imageLink,
-        caption: "CSEA Gallery"
+        caption: "CSEA Gallery",
       };
     });
 
@@ -77,7 +77,6 @@ export default class Gallery extends Component {
           })}
         </div>
         <ImgsViewer
-          backdropCloseable={true}
           imgs={imageLinks}
           currImg={this.state.currImg}
           isOpen={this.state.isOpen}

@@ -10,6 +10,13 @@ const Footer = () => {
       <div className="flex flex-col-reverse lg:flex-row gap-4">
         <OtherLinksHolder />
         <Glasscard styles="bg-green-500 w-full">
+          {/* Official mail id */}
+          <div className="mb-6">
+            <p className="font-semibold font-playfair border-b-2 border-white pb-2 mb-2 w-max">
+              Official mail ID
+            </p>
+            <span className="leading-loose">csea.cse@psgtech.ac.in</span>
+          </div>
           {/* Address */}
           <div className="mb-6">
             <p className="font-semibold font-playfair border-b-2 border-white pb-2 mb-2 w-max">

@@ -7,45 +7,14 @@ import BackButton from "../../../../components/BackButton";
 import LinkButton from "../../../../components/LinkButton";
 import Status from "../../../../components/Status";
 import { useRouter } from "next/router";
-import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getCompletedEvents } from "../../../api/events/year/[academicYear]/completed";
 import { getUpcomingEvents } from "../../../api/events/year/[academicYear]/upcoming";
 import { getCurrentAcademicYear } from "../../../api/events/year/currentAcademicYear";
+import { getArchives } from "../../../api/events/archives";
 
-const Events = ({ currentAcademicYear }) => {
+const Events = ({ allEvents }) => {
   const router = useRouter();
   const { academicYear } = router.query;
-
-  const { data } = useQuery(
-    ["all-events", academicYear],
-    async () => {
-      // fetching all completed events
-      const completedEvents = await fetch(
-        `/api/events/year/${academicYear}/completed`
-      );
-
-      const completedEventsJson = await completedEvents.json();
-
-      // fetching all upcoming events
-      const upcomingEvents = await fetch(
-        `/api/events/year/${academicYear}/upcoming`
-      );
-
-      const upcomingEventsJson = await upcomingEvents.json();
-
-      const allEvents = {
-        completedEvents: completedEventsJson,
-        upcomingEvents: upcomingEventsJson,
-      };
-
-      return allEvents;
-    },
-    {
-      keepPreviousData: true,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
 
   const getDate = (seconds) => {
     const date = new Date(seconds * 1000); // conversion from seconds to date
@@ -67,12 +36,12 @@ const Events = ({ currentAcademicYear }) => {
       </Glasscard>
 
       {/* Displaying upcoming events */}
-      {currentAcademicYear === academicYear && (
+      {allEvents.currentAcademicYear === academicYear && (
         <>
           <TitleWithLine title="Upcoming events" styles="text-xl font-bold" />
-          {data.upcomingEvents.length > 0 ? (
+          {allEvents.upcomingEvents.length > 0 ? (
             <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-start">
-              {data.upcomingEvents
+              {allEvents.upcomingEvents
                 .sort((a, b) => {
                   // Turn seconds into dates, and then subtract them
                   // to get a value that is either negative, positive, or zero.
@@ -106,9 +75,9 @@ const Events = ({ currentAcademicYear }) => {
       )}
       {/* Displaying completed events */}
       <TitleWithLine title="Completed events" styles="text-xl font-bold" />
-      {data.completedEvents.length > 0 ? (
+      {allEvents.completedEvents.length > 0 ? (
         <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 my-6 place-items-start">
-          {data.completedEvents
+          {allEvents.completedEvents
             .sort((a, b) => {
               // Turn seconds into dates, and then subtract them
               // to get a value that is either negative, positive, or zero.
@@ -149,34 +118,45 @@ const Events = ({ currentAcademicYear }) => {
   );
 };
 
-// Here server side rendering is used because for each academic year, different events are shown
-export const getServerSideProps = async (context) => {
-  let academicYear = context.params.academicYear;
 
+// Incremental Static Regeneration
+export const getStaticProps = async (context) => {
   // get current academic year
   const currentAcademicYear = await getCurrentAcademicYear();
 
-  // code for prefetching data from server using react-query
-  const queryClient = new QueryClient();
+  const completedEvents = await getCompletedEvents(
+    currentAcademicYear.academic_year
+  );
+  const upcomingEvents = await getUpcomingEvents(
+    currentAcademicYear.academic_year
+  );
 
-  await queryClient.prefetchQuery(["all-events", academicYear], async () => {
-    const completedEvents = await getCompletedEvents(academicYear);
-    const upcomingEvents = await getUpcomingEvents(academicYear);
-
-    const allEvents = {
-      completedEvents,
-      upcomingEvents,
-    };
-
-    return allEvents;
-  });
+  const allEvents = {
+    currentAcademicYear: currentAcademicYear.academic_year,
+    completedEvents,
+    upcomingEvents,
+  };
 
   return {
     props: {
-      currentAcademicYear: currentAcademicYear.academic_year,
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      allEvents: JSON.parse(JSON.stringify(allEvents)),
     },
+    revalidate: 120, // revalidate after 2 minutes
   };
 };
+
+export const getStaticPaths = async () => {
+  // get all academic years
+  const years = await getArchives();
+
+  const paths = years.map(year => ({
+    params: { academicYear: year}
+  }))
+
+  return{
+    paths,
+    fallback: false
+  }
+}
 
 export default Events;
