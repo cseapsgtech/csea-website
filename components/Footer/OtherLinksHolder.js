@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const OtherLinksHolder = () => {
   return (
-    <div className="w-full md:w-128">
+    <div className="w-full lg:w-128">
       <div className="flex flex-col">
         <a
           className="text-shadow my-2"
@@ -44,6 +44,9 @@ const OtherLinksHolder = () => {
           />
         </div>
         <Image src="/logo.png" height={20} width={120} alt="CSEA logo" />
+      </div>
+      <div className="my-3 text-sm w-full text-center bg-white bg-opacity-25 text-white p-2 rounded-md">
+        Designed with ❤️ by CSEA
       </div>
     </div>
   );

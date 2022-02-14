@@ -15,7 +15,9 @@ const Footer = () => {
             <p className="font-semibold font-playfair border-b-2 border-white pb-2 mb-2 w-max">
               Official mail ID
             </p>
-            <span className="leading-loose">csea.cse@psgtech.ac.in</span>
+            <span className="leading-loose">
+              <a href="mailto:csea.cse@psgtech.ac.in" className="underline">csea.cse@psgtech.ac.in</a>
+            </span>
           </div>
           {/* Address */}
           <div className="mb-6">
