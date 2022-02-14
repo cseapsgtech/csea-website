@@ -21,7 +21,7 @@ const MottoAndSocial = () => {
           </div>
           <LinkButton
             href="/teams"
-            styles="px-4 py-2 border-white border-2 rounded-lg mt-4 w-max"
+            styles="px-4 py-2 border-white border-2 hover:bg-white hover:text-black transition-all duration-300 rounded-lg mt-4 w-max"
           >
             Check out the <span className="font-semibold">TEAM</span>!
           </LinkButton>

@@ -1,12 +1,12 @@
 const GradientButton = (props) => {
   return props.buttonType === "outline" ? (
-    <button className="py-2 w-max px-4 rounded-lg text-sm border-2 border-white">
+    <div className="py-2 w-max px-4 rounded-lg text-sm border-2 border-white">
       {props.children}
-    </button>
+    </div>
   ) : (
-    <button className="py-2 w-max px-4 rounded-lg text-sm grad-button">
+    <div className="py-2 w-max px-4 rounded-lg text-sm grad-button">
       {props.children}
-    </button>
+    </div>
   );
 };
 
