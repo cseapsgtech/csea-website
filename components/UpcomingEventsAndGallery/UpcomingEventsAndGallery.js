@@ -17,7 +17,11 @@ const UpcomingEventsAndGallery = ({
   return (
     <div className="flex flex-col gap-6 mb-6 md:flex-row w-full">
       {/*Upcoming events*/}
-      <Glasscard styles="w-full md:w-max">
+      <Glasscard
+        styles={`w-full ${
+          upcomingEvents.length === 0 ? "md:h-36 md:w-128" : "md:h-full md:w-max"
+        } `}
+      >
         <TitleWithLine title="Upcoming events" />
         {upcomingEvents.length > 0 ? (
           <div className="mb-2 xsm:mb-0 overflow-auto flex flex-col gap-y-6 xsm:pr-3 mt-4 xsm:max-h-128">
@@ -43,7 +47,7 @@ const UpcomingEventsAndGallery = ({
               })}
           </div>
         ) : (
-          <Status styles="w-full md:w-72 px-8 border-yellow-500">
+          <Status styles="w-full px-8 border-none text-yellow-500">
             No upcoming events!
           </Status>
         )}

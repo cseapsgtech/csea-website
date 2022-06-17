@@ -13,7 +13,7 @@ import { getCurrentAcademicYear } from "./api/events/year/currentAcademicYear";
 import { getCompletedEvents } from "./api/events/year/[academicYear]/completed";
 import { getUpcomingEvents } from "./api/events/year/[academicYear]/upcoming";
 import { getPictureLinks } from "./api/gallery";
-import { getTeamMembers } from "./api/teams";
+import { getTeamMembers } from "./api/teams/[academicYear]";
 import { getMagazineLinks } from "./api/magazine";
 
 export default function Home({ allData }) {
@@ -49,7 +49,7 @@ export const getStaticProps = async () => {
   );
   const gallery = await getPictureLinks();
   const magazineLinks = await getMagazineLinks();
-  const teamMembers = await getTeamMembers();
+  const teamMembers = await getTeamMembers(currentAcademicYear.academic_year);
 
   const allData = {
     currentAcademicYear: currentAcademicYear.academic_year,

@@ -5,7 +5,8 @@ import TeamCard from "../components/Team/TeamCard";
 import BackButton from "../components/BackButton";
 import { useRouter } from "next/router";
 // import { dehydrate, QueryClient, useQuery } from "react-query";
-import { getTeamMembers } from "./api/teams";
+import { getTeamMembers } from "./api/teams/[academicYear]";
+import { getCurrentAcademicYear } from "./api/events/year/currentAcademicYear";
 
 const Teams = ({ teamMembers }) => {
   const router = useRouter();
@@ -61,7 +62,9 @@ const Teams = ({ teamMembers }) => {
 
 // Incremental static regeneration
 export const getStaticProps = async () => {
-  const teamMembers = await getTeamMembers();
+  const currentAcademicYear = await getCurrentAcademicYear();
+
+  const teamMembers = await getTeamMembers(currentAcademicYear.academic_year);
 
   return {
     props: {

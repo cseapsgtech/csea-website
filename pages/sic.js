@@ -5,12 +5,12 @@ import BackButton from "../components/BackButton.js";
 import { useRouter } from "next/router";
 import ProblemStatementCard from "../components/SIC page/ProblemStatementCard.js";
 // import { dehydrate, QueryClient, useQuery } from "react-query";
-import { getProbStatements } from "./api/sic.js";
+import { getProbStatements } from "./api/sic/[academicYear].js";
+import { getCurrentAcademicYear } from "./api/events/year/currentAcademicYear.js";
 
 const SIC = ({ probStatements }) => {
-
   const router = useRouter();
-  
+
   // const { data: probStatements } = useQuery(
   //   "sic",
   //   async () => {
@@ -45,7 +45,7 @@ const SIC = ({ probStatements }) => {
       <TopBar />
       <BackButton router={router} />
       <Glasscard styles="flex-1 w-full mb-6">
-        <div className="flex flex-col items-center justify-center h-full p-4">
+        <div className="flex flex-col items-center justify-center h-full py-2 md:p-4">
           <div className="text-2xl md:text-3xl text-center border-b-2 border-white pb-4">
             Student Interaction Corner
           </div>
@@ -61,24 +61,25 @@ const SIC = ({ probStatements }) => {
           </p>
         </div>
       </Glasscard>
-      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 mb-6 place-items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 mb-6 place-items-stretch">
         {probStatements
           .sort((a, b) => {
             // Turn seconds into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return (
-              new Date(b.end_date.seconds * 1000) -
-              new Date(a.end_date.seconds * 1000)
+              new Date(b.date.seconds * 1000) - new Date(a.date.seconds * 1000)
             );
           })
           .map((ps) => {
             return (
               <ProblemStatementCard
                 key={ps.id}
+                title={ps.title}
                 statement={ps.statement}
-                endDate={getDate(ps.end_date.seconds)}
-                isExpired={isExpired(ps.end_date.seconds)}
+                endDate={getDate(ps.date.seconds)}
+                isExpired={isExpired(ps.date.seconds)}
                 forList={ps.participants}
+                link={ps.link ? ps.link : "/"}
               />
             );
           })}
@@ -87,17 +88,19 @@ const SIC = ({ probStatements }) => {
   );
 };
 
-
 // Incremental static regeneration
 export const getStaticProps = async () => {
-  
-  const probStatements = await getProbStatements();
+  const currentAcademicYear = await getCurrentAcademicYear();
+
+  const probStatements = await getProbStatements(
+    currentAcademicYear.academic_year
+  );
 
   return {
     props: {
       probStatements: JSON.parse(JSON.stringify(probStatements)),
     },
-    revalidate: 120
+    revalidate: 120,
   };
 };
 

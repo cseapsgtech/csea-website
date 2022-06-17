@@ -2,7 +2,7 @@ import GradientButton from "../GradientButton.js";
 
 const ForList = ({ forList, buttonType = "normal" }) => {
   return (
-    <div className="flex gap-2 my-4 flex-wrap">
+    <div className="flex gap-2 flex-wrap">
       {forList.map((item, index) => {
         if (item === "1") {
           return (

@@ -67,9 +67,7 @@ const Events = ({ allEvents }) => {
                 })}
             </div>
           ) : (
-            <Status styles="border-yellow-500 mb-6">
-              No upcoming events :
-            </Status>
+            <Status styles="border-yellow-500 mb-6">No upcoming events!</Status>
           )}
         </>
       )}
@@ -118,20 +116,14 @@ const Events = ({ allEvents }) => {
   );
 };
 
-
 // Incremental Static Regeneration
 export const getStaticProps = async (context) => {
-  
   const { academicYear } = context.params;
 
   const currentAcademicYear = await getCurrentAcademicYear();
 
-  const completedEvents = await getCompletedEvents(
-    academicYear
-  );
-  const upcomingEvents = await getUpcomingEvents(
-    academicYear
-  );
+  const completedEvents = await getCompletedEvents(academicYear);
+  const upcomingEvents = await getUpcomingEvents(academicYear);
 
   const allEvents = {
     currentAcademicYear: currentAcademicYear.academic_year,
@@ -151,14 +143,14 @@ export const getStaticPaths = async () => {
   // get all academic years
   const years = await getArchives();
 
-  const paths = years.map(year => ({
-    params: { academicYear: year}
-  }))
+  const paths = years.map((year) => ({
+    params: { academicYear: year },
+  }));
 
-  return{
+  return {
     paths,
-    fallback: false
-  }
-}
+    fallback: false,
+  };
+};
 
 export default Events;
