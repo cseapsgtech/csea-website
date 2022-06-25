@@ -22,16 +22,16 @@ const ForList = ({ forList, buttonType = "normal" }) => {
               3rd year
             </GradientButton>
           );
-        } else if (item === "M.E. final year") {
+        } else if (item === "4") {
           return (
             <GradientButton key={index} buttonType={buttonType} noHover>
-              M.E. final year
+              4th year
             </GradientButton>
           );
         } else {
           return (
             <GradientButton key={index} buttonType={buttonType} noHover>
-              {item}th year
+              {item}
             </GradientButton>
           );
         }

@@ -74,7 +74,7 @@ const Events = () => {
             {event.desc}
           </div>
           {/* Participant list */}
-          <div className="mt-2">
+          <div className="mt-6">
             <ForList forList={event.participants} buttonType="outline" />
           </div>
           {/* Convenors */}
